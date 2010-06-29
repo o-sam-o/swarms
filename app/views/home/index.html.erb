@@ -1,0 +1,22 @@
+<h1>Popular Torrents</h1>
+
+<% unless @movies.empty? %>
+	<table>
+		<thead>
+			<tr>
+				<th>Movie</th>
+				<th>Swarm</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @movies.each do |movie| %>
+				<tr>
+					<td><%= movie.name %></td>
+					<td><%= movie.torrents.latest_swarm_count %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	No movies.
+<% end %>
