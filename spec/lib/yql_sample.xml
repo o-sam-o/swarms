@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng" yahoo:count="31" yahoo:created="2010-07-05T09:59:46Z" yahoo:lang="en-US">
+    <diagnostics>
+        <publiclyCallable>true</publiclyCallable>
+        <url execution-time="1214" proxy="DEFAULT"><![CDATA[http://thepiratebay.org/browse/201/0/9]]></url>
+        <user-time>1221</user-time>
+        <service-time>1214</service-time>
+        <build-version>8466</build-version>
+    </diagnostics> 
+    <results>
+        <tr>
+            <td class="vertTh">
+                <center>
+                    <a href="/browse/200" title="More from this category">Video</a>
+                    <br/>
+                    <p>(<a href="/browse/201" title="More from this category">Movies</a>)</p>
+                </center>
+            </td>
+            <td>
+                <div class="detName">
+                    <a class="detLink" href="/torrent/5622259/The_A_Team_2010_TS_XViD_-_IMAGiNE" title="Details for The A Team 2010 TS XViD - IMAGiNE">The A Team 2010 TS XViD - IMAGiNE</a>
+                </div>
+                <a href="http://torrents.thepiratebay.org/5622259/The_A_Team_2010_TS_XViD_-_IMAGiNE.5622259.TPB.torrent" title="Download this torrent">
+                    <img alt="Download" class="dl" src="http://static.thepiratebay.org/img/dl.gif"/>
+                </a>
+                <a href="magnet:?xt=urn:btih:90cdce7eec65c05b437db715c1a9329252a84ddf&amp;dn=The+A+Team+2010+TS+XViD+-+IMAGiNE&amp;tr=http%3A%2F%2Ftracker.openbittorrent.com%2Fannounce" title="Download this torrent using magnet">
+                    <img alt="Magnet link" src="http://static.thepiratebay.org/img/icon-magnet.gif"/>
+                </a>
+                <img alt="This torrent has 110 comments." src="http://static.thepiratebay.org/img/icon_comment.gif" title="This torrent has 110 comments."/>
+                <img alt="This torrent has a cover image" src="http://static.thepiratebay.org/img/icon_image.gif" title="This torrent has a cover image"/>
+                <a href="/user/raymondhome">
+                    <img alt="VIP" border="0" src="http://static.thepiratebay.org/img/vip.gif" style="width:11px;" title="VIP"/>
+                </a>
+                <font class="detDesc">Uploaded 06-12&nbsp;07:23, Size 1.39&nbsp;GiB, ULed by <a class="detDesc" href="/user/raymondhome/" title="Browse raymondhome">raymondhome</a>
+                </font>
+            </td>
+            <td align="right">
+                <p>8557</p>
+            </td>
+            <td align="right">
+                <p>5142</p>
+            </td>
+        </tr>
+	</result>
+</query>

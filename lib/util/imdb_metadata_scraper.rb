@@ -1,5 +1,5 @@
+# encoding: utf-8
 require 'open-uri'
-require 'hpricot'
 module Util
   class ImdbMetadataScraper 
     IMDB_BASE_URL = 'http://www.imdb.com/'
@@ -78,7 +78,7 @@ module Util
         key = div.search("//h5").first.inner_text.sub(':', '').downcase
         value_search = "//div[@class = 'info-content']"
         # Try to only get text values and ignore links as some info blocks have a "click for more info" type link at the end
-        value = div.search(value_search).first.children.select{|e| e.text?}.join.gsub(STRIP_WHITESPACE, '').strip
+        value = div.search(value_search).first.children.map{|e| e.text? ? e.to_s.encode("UTF-8") : ''}.join.gsub(STRIP_WHITESPACE, '').strip
         if value.empty?
           value = div.search(value_search).first.inner_text.gsub(STRIP_WHITESPACE, '')
         end

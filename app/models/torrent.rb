@@ -19,13 +19,12 @@ class Torrent < ActiveRecord::Base
   
   private
     def associate_with_movie
-      return if movie
+      return unless movie.nil?
       name_info = cleaned_name
-      year = name_info.year
-      if year.present?
-        movie = Movie.find_by_name_and_year(name_info.name, year)
+      if name_info.year.blank?
+        self.movie = Movie.find_by_name(name_info.name)
       else
-        movie = Movie.find_by_name(name_info.name)
+        self.movie = Movie.find_by_name_and_year(name_info.name, name_info.year)
       end
       
       unless movie
@@ -33,10 +32,11 @@ class Torrent < ActiveRecord::Base
         imdb_id = Util::ImdbMetadataScraper.search_for_imdb_id(name_info.name, name_info.year)
         if imdb_id.present?
           logger.info "Found imdb id #{imdb_id} for #{name_info.name} (#{name_info.year})"
-          movie = Movie.find_or_create_by_imdb_id(imdb_id)
+          self.movie = Movie.find_or_create_by_imdb_id(imdb_id)
         else
           logger.warn "Couldn't find imdb id for #{name_info.name} (#{name_info.year})"
         end
       end  
+      save!
     end  
 end

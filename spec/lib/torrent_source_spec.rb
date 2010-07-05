@@ -40,5 +40,26 @@ describe TorrentSource do
     end
   
   end
+  
+  it 'should record torrent stats' do
+    stats = mock(:stats)
+    torrent = mock(:torrent, :stats => stats)
+    Torrent.should_receive(:find_or_create_by_name).with('torrent name').and_return(torrent)
+    stats.should_receive(:create!).with(:seeds => 10, :leaches => 100)
+    
+    source = TorrentSource.new
+    source.record_stats('torrent name', 10, 100)
+  end  
+  
+  it 'should source torrent' do
+    Net::HTTP.should_receive(:post_form).and_return(mock(:response, :body => IO.read(File.join(File.dirname(__FILE__), 'yql_sample.xml'))))
+    
+    stats = mock(:stats)
+    torrent = mock(:torrent, :stats => stats)
+    Torrent.should_receive(:find_or_create_by_name).with('The_A_Team_2010_TS_XViD_-_IMAGiNE.5622259.TPB.torrent').and_return(torrent)
+    stats.should_receive(:create!).with(:seeds => '8557', :leaches => '5142')    
+    
+    TorrentSource.update.should == "Found 1 torrents"
+  end  
 
 end  

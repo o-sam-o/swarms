@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Movie do
   
   before(:each) do
-    Torrent.stub!(:associate_with_movie)
+    Util::ImdbMetadataScraper.stub!(:search_for_imdb_id)
   end
   
   it 'should require name' do
@@ -33,5 +33,35 @@ describe Movie do
       torrent2.torrent_stats.create!(:seeds => 100, :leaches => 32)
 
       movie.torrents.latest_swarm_count.should == (100 + 32 + 11 + 30)
+  end  
+  
+  it 'should display name with year' do
+    Movie.new(:name => 'title', :year => 2000).display_name.should == "title (2000)"
+  end  
+  
+  
+  it 'should display name with year' do
+    Movie.new(:name => 'title', :year => '').display_name.should == "title"
+    Movie.new(:name => 'title').display_name.should == "title"    
+  end  
+  
+  context 'find_or_create_by_imdb_id' do
+    before(:each) do
+      @movie = Movie.create!(:name => 'test', :year => 2000, :imdb_id => '123')
+    end
+    
+    it 'should check to see if a movie already exists first' do
+      Movie.should_receive(:find_by_imdb_id).with('123').and_return(@movie)
+      
+      Movie.find_or_create_by_imdb_id('123').should == @movie
+    end  
+    
+    it 'should scrap imdb if a movie doesnt exist' do
+      Movie.should_receive(:find_by_imdb_id).with('123').and_return(nil)
+      Util::ImdbMetadataScraper.should_receive(:scrap_movie_info).with('123').and_return({'title' => 'test', 'year' => 2000})      
+      Movie.should_receive(:create!).with(:name => 'test', :year => 2000, :imdb_id => '123')
+      
+      Movie.find_or_create_by_imdb_id('123')
+    end    
   end  
 end
