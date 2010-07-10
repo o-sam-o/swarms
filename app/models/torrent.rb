@@ -29,7 +29,7 @@ class Torrent < ActiveRecord::Base
       
       unless movie
         logger.info "Searching imdb for #{name_info.name} (#{name_info.year})"
-        imdb_id = Util::ImdbMetadataScraper.search_for_imdb_id(name_info.name, name_info.year)
+        imdb_id = YayImdbs.search_for_imdb_id(name_info.name, name_info.year)
         if imdb_id.present?
           logger.info "Found imdb id #{imdb_id} for #{name_info.name} (#{name_info.year})"
           self.movie = Movie.find_or_create_by_imdb_id(imdb_id)

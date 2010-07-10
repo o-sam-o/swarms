@@ -16,7 +16,7 @@ class Movie < ActiveRecord::Base
     return movie if movie
     
     logger.info "Creating new movie with imdb id #{imdb_id}"
-    imdb_info = Util::ImdbMetadataScraper.scrap_movie_info(imdb_id)
+    imdb_info = YayImdbs.scrap_movie_info(imdb_id)
     Movie.create!(:name => imdb_info['title'], :year => imdb_info['year'], :imdb_id => imdb_id) 
   end  
 end

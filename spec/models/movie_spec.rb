@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Movie do
   
   before(:each) do
-    Util::ImdbMetadataScraper.stub!(:search_for_imdb_id)
+    YayImdbs.stub!(:search_for_imdb_id)
   end
   
   it 'should require name' do
@@ -58,7 +58,7 @@ describe Movie do
     
     it 'should scrap imdb if a movie doesnt exist' do
       Movie.should_receive(:find_by_imdb_id).with('123').and_return(nil)
-      Util::ImdbMetadataScraper.should_receive(:scrap_movie_info).with('123').and_return({'title' => 'test', 'year' => 2000})      
+      YayImdbs.should_receive(:scrap_movie_info).with('123').and_return({'title' => 'test', 'year' => 2000})      
       Movie.should_receive(:create!).with(:name => 'test', :year => 2000, :imdb_id => '123')
       
       Movie.find_or_create_by_imdb_id('123')

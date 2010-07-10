@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Torrent do
 
   before(:each) do
-    Util::ImdbMetadataScraper.stub!(:search_for_imdb_id)
+    YayImdbs.stub!(:search_for_imdb_id)
   end  
 
   it 'should require name' do
@@ -66,7 +66,7 @@ describe Torrent do
     it 'should search imdb if it cant find similar movies' do
       Util::FileNameCleaner.should_receive(:get_name_info).and_return(mock(:file_info, :name => 'test', :year => 2000))
       Movie.should_receive(:find_by_name_and_year).with('test', 2000).and_return(nil)
-      Util::ImdbMetadataScraper.should_receive(:search_for_imdb_id).and_return('123')
+      YayImdbs.should_receive(:search_for_imdb_id).and_return('123')
       Movie.should_receive(:find_or_create_by_imdb_id).with('123').and_return(@movie)
       
       torrent = Torrent.create!(:name => 'test[2000].torrent')

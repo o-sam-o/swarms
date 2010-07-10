@@ -7,8 +7,7 @@ gem 'rails', '3.0.0.beta4'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'hpricot'
-gem 'htmlentities'
+gem 'yayimdbs', :require => 'yay_imdbs'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -21,7 +20,7 @@ gem 'htmlentities'
 
 # Bundle the extra gems:
 # gem 'bj'
-gem 'nokogiri', '1.4.1'
+# gem 'nokogiri', '1.4.1'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
