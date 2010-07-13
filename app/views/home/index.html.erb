@@ -4,6 +4,7 @@
 	<table>
 		<thead>
 			<tr>
+				<th>Image</th>
 				<th>Movie</th>
 				<th>Swarm</th>
 			</tr>
@@ -11,6 +12,11 @@
 		<tbody>
 			<% @movies.each do |movie| %>
 				<tr>
+					<td>
+						<% if movie.movie_images.small %>
+							<img src="<%= movie.movie_images.small.file_name %>"/>
+						<% end %>
+					</td>
 					<td><%= movie.name %></td>
 					<td><%= movie.torrents.latest_swarm_count %></td>
 				</tr>

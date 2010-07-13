@@ -9,7 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100628105308) do
+ActiveRecord::Schema.define(:version => 20100712103740) do
+
+  create_table "movie_images", :force => true do |t|
+    t.integer  "movie_id"
+    t.string   "file_name"
+    t.string   "format"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", :force => true do |t|
     t.string   "name"

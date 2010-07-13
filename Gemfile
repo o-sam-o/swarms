@@ -9,6 +9,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'yayimdbs', :require => 'yay_imdbs'
 
+gem 'imagesize', :require => 'image_size'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
