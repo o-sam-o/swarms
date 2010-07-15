@@ -12,6 +12,10 @@ class Movie < ActiveRecord::Base
     end  
   end
   
+  def images
+    movie_images
+  end  
+  
   def display_name
     year? ? "#{name} (#{year})" : name
   end  

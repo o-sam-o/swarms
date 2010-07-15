@@ -2,31 +2,8 @@
   Most Popular Movies
 <% end %>
 
-<h1>Popular Torrents</h1>
-
 <% unless @movies.blank? %>
-	<table>
-		<thead>
-			<tr>
-				<th>Image</th>
-				<th>Movie</th>
-				<th>Swarm</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @movies.each do |movie| %>
-				<tr>
-					<td>
-						<% if movie.movie_images.small %>
-							<img src="<%= movie.movie_images.small.file_name %>"/>
-						<% end %>
-					</td>
-					<td><%= movie.name %></td>
-					<td><%= movie.torrents.latest_swarm_count %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+	<%= render :partial => "movie_tile", :collection => @movies %>
 <% else %>
 	No movies.
 <% end %>

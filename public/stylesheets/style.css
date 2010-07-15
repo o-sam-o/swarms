@@ -1,0 +1,9 @@
+.movie-title {
+  float: left;
+  padding: 5px;
+  width: 110px;
+  height: 200px;
+}
+.movie-title h6 {
+  line-height: 13px;
+}

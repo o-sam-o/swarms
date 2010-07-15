@@ -4,4 +4,4 @@ log/*.log
 tmp/**/*
 lib/.DS_Store
 .DS_Store
-public/posters/*
+public/images/posters/*

@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class MovieImage < ActiveRecord::Base
-  IMAGE_BASE_DIR = "#{Rails.root}/public"
+  IMAGE_BASE_DIR = "#{Rails.root}/public/images/"
   
   validates_presence_of :file_name, :movie
   belongs_to :movie
@@ -18,7 +18,7 @@ class MovieImage < ActiveRecord::Base
   
   private
     def self.complete_file_name(movie, url, type)
-      "#{IMAGE_BASE_DIR}/posters/#{movie.id.to_s.rjust(6, '0').insert(-4, '/')}/#{movie.name.downcase}#{type.nil? ? '' : '_' + type.to_s}.#{url.split('.').last}"
+      "#{IMAGE_BASE_DIR}posters/#{movie.id.to_s.rjust(6, '0').insert(-4, '/')}/#{movie.name.downcase}#{type.nil? ? '' : '_' + type.to_s}.#{url.split('.').last}"
     end  
     
     def self.get_image(download_location, url)
