@@ -9,12 +9,7 @@ class MovieImage < ActiveRecord::Base
   def self.download_image(url, movie, format=nil)
     download_location  = self.complete_file_name(movie, url, format)
     logger.info "Downloading image: #{url} to #{download_location}"
-    FileUtils.mkdir_p(File.dirname(download_location))
-    open(url, 'rb') do |img|
-      File.open(download_location, 'wb') do |file|
-        file.write(img.read)
-      end
-    end
+    self.get_image(download_location, url)
     width, height = ImageSize.new(File.new(download_location, "r")).get_size
     logger.info "Img (#{width}, #{height}) - #{format}"
     movie.movie_images.create!(:file_name => download_location[IMAGE_BASE_DIR.length..-1],
@@ -24,5 +19,14 @@ class MovieImage < ActiveRecord::Base
   private
     def self.complete_file_name(movie, url, type)
       "#{IMAGE_BASE_DIR}/posters/#{movie.id.to_s.rjust(6, '0').insert(-4, '/')}/#{movie.name.downcase}#{type.nil? ? '' : '_' + type.to_s}.#{url.split('.').last}"
+    end  
+    
+    def self.get_image(download_location, url)
+      FileUtils.mkdir_p(File.dirname(download_location))
+      open(url, 'rb') do |img|
+        File.open(download_location, 'wb') do |file|
+          file.write(img.read)
+        end
+      end      
     end  
 end

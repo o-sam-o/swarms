@@ -63,5 +63,27 @@ describe Movie do
       
       Movie.find_or_create_by_imdb_id('123')
     end    
+    
+    it 'should download poster images if urls provided' do
+      Movie.should_receive(:find_by_imdb_id).with('123').and_return(nil)
+      YayImdbs.should_receive(:scrap_movie_info).with('123').and_return({'title' => 'test', 'year' => 2000, 
+                                                        :small_image => 'small_url', :large_image => 'large_url'})      
+      Movie.should_receive(:create!).with(:name => 'test', :year => 2000, :imdb_id => '123').and_return(@movie)
+      
+      MovieImage.should_receive(:download_image).with('small_url', @movie, :small)
+      MovieImage.should_receive(:download_image).with('large_url', @movie, :poster)
+      
+      Movie.find_or_create_by_imdb_id('123')
+    end    
+    
+    it 'should not download poster images if no urls provided' do
+      Movie.should_receive(:find_by_imdb_id).with('123').and_return(nil)
+      YayImdbs.should_receive(:scrap_movie_info).with('123').and_return({'title' => 'test', 'year' => 2000})      
+      Movie.should_receive(:create!).with(:name => 'test', :year => 2000, :imdb_id => '123').and_return(@movie)
+      
+      MovieImage.should_not_receive(:download_image)
+      
+      Movie.find_or_create_by_imdb_id('123')
+    end    
   end  
 end
