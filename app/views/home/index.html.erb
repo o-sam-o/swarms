@@ -1,3 +1,7 @@
+<% content_for :main_title do %>
+  Most Popular Movies
+<% end %>
+
 <h1>Popular Torrents</h1>
 
 <% unless @movies.blank? %>
@@ -25,4 +29,12 @@
 	</table>
 <% else %>
 	No movies.
+<% end %>
+
+<% content_for :sidebar_title do %>
+  Recent Additions
+<% end %>
+
+<% content_for :sidebar do %>
+  Recent movies to go here
 <% end %>

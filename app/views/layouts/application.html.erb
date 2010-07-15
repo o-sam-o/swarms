@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Swarm</title>
-  <%= stylesheet_link_tag :all %>
+  <title><%= yield :title or 'Swarm' %></title>
+  <%= stylesheet_link_tag 'theme' %>
+	<!--[if lt IE 8]>
+		<%= stylesheet_link_tag 'theme_ie' %>
+	<![endif]-->
+
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+  
+  <%= yield :head %>
 </head>
 <body>
+	<div id="pg-nav-bg"> 
+		<div class="wrapper clear"> 
+			<div id="pg-nav"> 
+				<ul class="nav"> 
+					<li class="page_item current_page_item"><a href="http://wp-themes.com">Home</a></li> 
+					<li class="page_item page-item-2"><a href="http://wp-themes.com/?page_id=2" title="About">About</a></li> 
+				</ul> 
+			</div><!--end page-navigation--> 
+		</div><!--end wrapper--> 
+	</div><!--end page-navigation-bg--> 
+		
+	<div class="wrapper big"> 
+		<div id="header" class="clear"> 
+			<div class="logo"> 
+				<h1 id="title"><a href="http://wp-themes.com">Swarms</a></h1>				
+				<div id="description"> 
+					Movie torrent statistics			
+				</div><!--end description--> 
+			</div><!--end logo--> 
+			
+		</div><!--end header--> 
+			
+		<div id="main-top"> 
+			<h4><%= yield :main_title %></h4> 
+			<div class="subscribe"> 
+				<h5><%= yield :sidebar_title %></h5> 
+			</div>	
+		</div> 
+				
+		<div id="main" class="clear"> 
+			<div id="content">
+				<%= yield %>
+			</div><!--end content--> 
+			<div id="sidebar"> 
+				<%= yield :sidebar %>
+			</div><!--end sidebar-->	
+		</div><!--end main--> 
+	
+	<div id="main-bottom"></div> 
+</div><!--end wrapper--> 
 
-<%= yield %>
 
+<div id="footer"> 
+	<div class="wrapper clear"> 
+		<div id="footer-about" class="footer-column"> 
+			<h2>Categories</h2> 
+			<p>Todo add categories here</p> 
+		</div> 
+		<div id="footer-middle" class="footer-column"> 
+			<ul> 
+				<li class="widget"> 
+					<h2 class="widgettitle">Pages</h2> 
+					<ul> 
+						<li class="page_item page-item-2"><a href="http://wp-themes.com/?page_id=2" title="About">About</a></li> 
+						<li class="page_item page-item-46"><a href="http://wp-themes.com/?page_id=46" title="Parent Page">Parent Page</a> 
+						<ul class='children'> 
+								<li class="page_item page-item-49"><a href="http://wp-themes.com/?page_id=49" title="Sub-page">Sub-page</a></li> 
+							</ul> 
+						</li> 
+					</ul> 
+				</li> 
+			</ul> 
+		</div> 
+		<div id="footer-search" class="footer-column"> 
+			<h2>Search</h2> 
+				<form method="get" id="search_form" action="http://wp-themes.com/"> 
+					<input type="text"	name="s" id="s" class="search"/> 
+					<input type="submit" id="searchsubmit" value="Search" /> 
+				</form> 
+		</div> 
+	</div><!--end wrapper--> 
+</div><!--end footer--> 
+
+<div id="copyright" class="wrapper"> 
+	<p class="credit"><a href="http://thethemefoundry.com/traction/">Traction Theme</a> by <a href="http://thethemefoundry.com">The Theme Foundry</a></p> 
+	<p>Swarms | 0-0-1 | developed by <a href="cavenaghweb@hotmail.com">Sam Cavenagh</a></p> 
+</div><!--end copyright-->
 </body>
 </html>
