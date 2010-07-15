@@ -20,20 +20,30 @@ describe Movie do
     movie.should be_valid
   end
   
-  it 'should return the latest swarm count' do
-      movie = Movie.create!(:name => 'Movie', :year => 2000)
-      
-      torrent1 = Torrent.create!(:name => 'test.torrent', :movie => movie)
+  context 'torrent counts' do
+  
+    before(:each) do
+      @movie = Movie.create!(:name => 'Movie', :year => 2000)
+    
+      torrent1 = Torrent.create!(:name => 'test.torrent', :movie => @movie)
       torrent1.torrent_stats.create!(:seeds => 10, :leaches => 2)
       latest1 = torrent1.torrent_stats.build(:seeds => 11, :leaches => 30)
       latest1.created_at = Date.civil(2020, 1, 1)
       latest1.save!
 
-      torrent2 = Torrent.create!(:name => 'test2.torrent', :movie => movie)
-      torrent2.torrent_stats.create!(:seeds => 100, :leaches => 32)
-
-      movie.torrents.latest_swarm_count.should == (100 + 32 + 11 + 30)
-  end  
+      torrent2 = Torrent.create!(:name => 'test2.torrent', :movie => @movie)
+      torrent2.torrent_stats.create!(:seeds => 100, :leaches => 32)  
+    end  
+  
+    it 'should return the latest swarm count' do
+      @movie.torrents.latest_swarm_count.should == (100 + 32 + 11 + 30)
+    end  
+  
+    it 'should return the latest leaches count' do
+      @movie.torrents.latest_leaches_count.should == (32 + 30)
+    end
+  
+  end
   
   it 'should display name with year' do
     Movie.new(:name => 'title', :year => 2000).display_name.should == "title (2000)"

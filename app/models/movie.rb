@@ -5,6 +5,9 @@ class Movie < ActiveRecord::Base
     def latest_swarm_count
       self.inject(0) { |result, torrent| result + torrent.stats.latest.swarm_size }
     end  
+    def latest_leaches_count
+      self.inject(0) { |result, torrent| result + torrent.stats.latest.leaches }
+    end    
   end  
   has_many :movie_images do
     def small

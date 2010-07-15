@@ -11,3 +11,8 @@
  * Badges + sparkle lines
 
  * Page for verifying torrent to movie match and find movies without a match
+
+
+
+Possible Badges:
+New Release, New Entry, Hot, Dvd

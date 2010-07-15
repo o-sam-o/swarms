@@ -18,7 +18,7 @@ class MovieImage < ActiveRecord::Base
   
   private
     def self.complete_file_name(movie, url, type)
-      "#{IMAGE_BASE_DIR}posters/#{movie.id.to_s.rjust(6, '0').insert(-4, '/')}/#{movie.name.downcase}#{type.nil? ? '' : '_' + type.to_s}.#{url.split('.').last}"
+      "#{IMAGE_BASE_DIR}posters/#{movie.id.to_s.rjust(6, '0').insert(-4, '/')}/#{movie.name.downcase.gsub(/\s+/, '_').gsub(/[^\_\w]/, '')}#{type.nil? ? '' : '_' + type.to_s}.#{url.downcase.split('.').last}"
     end  
     
     def self.get_image(download_location, url)

@@ -4,7 +4,12 @@ describe MovieImage do
   
   it 'should determine the file image folder' do
     MovieImage.complete_file_name(stub(:movie, :id => 1, :name => 'movie1'), 'http://test.com/image.jpg', nil).should == "#{Rails.root}/public/images/posters/000/001/movie1.jpg"
-    MovieImage.complete_file_name(stub(:movie, :id => 10_000, :name => 'Movie2'), 'http://test.com/im.age.gif', :small).should == "#{Rails.root}/public/images/posters/010/000/movie2_small.gif"
+    MovieImage.complete_file_name(stub(:movie, :id => 10_000, :name => 'movie2'), 'http://test.com/im.age.gif', :small).should == "#{Rails.root}/public/images/posters/010/000/movie2_small.gif"
+  end  
+  
+  it 'it should strip case and non characters' do
+    MovieImage.complete_file_name(stub(:movie, :id => 1, :name => 'Movie 1'), 'http://test.com/image.jpg', nil).should == "#{Rails.root}/public/images/posters/000/001/movie_1.jpg"
+    MovieImage.complete_file_name(stub(:movie, :id => 10_000, :name => 'Movie2|\\*/'), 'http://test.com/im.age.GIF', :small).should == "#{Rails.root}/public/images/posters/010/000/movie2_small.gif"
   end  
   
   it 'should download image and create model' do
