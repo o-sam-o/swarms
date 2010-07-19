@@ -59,7 +59,7 @@ describe TorrentSource do
     Torrent.should_receive(:find_or_create_by_name).with('The_A_Team_2010_TS_XViD_-_IMAGiNE.5622259.TPB.torrent').and_return(torrent)
     stats.should_receive(:create!).with(:seeds => '8557', :leaches => '5142')    
     
-    TorrentSource.update.should == "Found 1 torrents"
+    TorrentSource.update.should =~ /Found 1 torrents/
   end  
 
 end  

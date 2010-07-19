@@ -7,3 +7,7 @@
 .movie-title h6 {
   line-height: 13px;
 }
+
+.movies_paginator {
+  clear: left;
+}

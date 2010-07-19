@@ -27,6 +27,7 @@ class TorrentSource
   end  
 
   def refresh
+    started_at = Time.now
     Rails.logger.info 'querying via YQL'
     xml = yql(%{select * from html where url="http://thepiratebay.org/browse/201/0/9" and xpath='//table[@id="searchResult"]/tr'})
     Rails.logger.info 'got yql result'
@@ -37,7 +38,13 @@ class TorrentSource
       record_stats(torrent, seeds, leaches)
       torrent_count += 1
     end
-    "Found #{torrent_count} torrents"
+    
+    Rails.logger.info "Updating movie swarm scores"
+    Movie.find_each do |movie|
+      movie.update_swarm_score(started_at)
+    end  
+    
+    "Found #{torrent_count} torrents in #{Time.now - started_at}s"
   end  
 
   def self.update

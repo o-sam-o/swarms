@@ -5,5 +5,5 @@
 		<%= image_tag('no_preview.jpg', :alt => "No preview") %>
 	<% end %>
 	<h6><%= movie_tile.display_name %></h6> 
-	<div class="movie-badges">[<%= movie_tile.torrents.latest_leaches_count %>]</div>
+	<div class="movie-badges">[<%= movie_tile.torrents.latest_seeds_count %> / <%= movie_tile.torrents.latest_leaches_count %>]</div>
 </div>	

@@ -8,6 +8,9 @@ class Movie < ActiveRecord::Base
     def latest_leaches_count
       self.inject(0) { |result, torrent| result + torrent.stats.latest.leaches }
     end    
+    def latest_seeds_count
+      self.inject(0) { |result, torrent| result + torrent.stats.latest.seeds }
+    end    
   end  
   has_many :movie_images do
     def small
@@ -21,6 +24,11 @@ class Movie < ActiveRecord::Base
   
   def display_name
     year? ? "#{name} (#{year})" : name
+  end  
+  
+  def update_swarm_score(after)
+    latest_stats = Movie.joins(:torrents => :torrent_stats).where("movies.id = ? and torrent_stats.created_at >= ?", self.id, after)
+    update_attribute(:swarm_score, latest_stats.sum(:seeds) + latest_stats.sum(:leaches))
   end  
   
   def self.find_or_create_by_imdb_id(imdb_id)

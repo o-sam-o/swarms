@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title><%= yield :title or 'Swarm' %></title>
+	<title><%= content_for?(:title) ? (yield :title) : 'Swarms' %></title>
 	<%= stylesheet_link_tag 'style' %>
 	<%= stylesheet_link_tag 'theme' %>
 	<!--[if lt IE 8]>

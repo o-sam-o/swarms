@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @movies = Movie.joins(:torrents => :torrent_stats).group("movies.id").order('sum(torrent_stats.leaches) desc').all
+    @movies = Movie.includes(:torrents => :torrent_stats).order('swarm_score desc').paginate(:page => params[:page], :per_page => 15)
   end
 
 end

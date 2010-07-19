@@ -11,6 +11,8 @@ gem 'yayimdbs', :require => 'yay_imdbs'
 
 gem 'imagesize', :require => 'image_size'
 
+gem 'will_paginate', '3.0.pre'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
