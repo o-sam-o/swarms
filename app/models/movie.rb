@@ -12,6 +12,7 @@ class Movie < ActiveRecord::Base
       self.inject(0) { |result, torrent| result + torrent.stats.latest.seeds }
     end    
   end  
+  
   has_many :movie_images do
     def small
       self.select { |i| i.format == 'small' }.first
