@@ -9,7 +9,7 @@ Rails::Application.load_tasks
 desc 'Update popular torrents'
 task :source_torrents => :environment do
   p 'Sourcing torrents ...'
-  p TorrentSource.update
+  p Source::TorrentSource.update
   p 'Done.'
 end
 
