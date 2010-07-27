@@ -4,7 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Rails::Application.load_tasks
+Swarm::Application.load_tasks
 
 desc 'Update popular torrents'
 task :source_torrents => :environment do
