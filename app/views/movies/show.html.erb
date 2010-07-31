@@ -8,6 +8,8 @@
 
 <% unless @movie.torrents.empty? %>
 	
+	<%= render :partial => "movie_stats_graph", :locals => {:movie => @movie} %>
+	
 	<%= render :partial => "torrents_column_graph", :locals => {:movie => @movie} %>
 	
 	<table>

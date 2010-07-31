@@ -1,0 +1,61 @@
+<div id="movie-stats-graph" style="width: 600px; height: 300px; margin: 0 auto"></div>
+
+<script type="text/javascript"> 
+
+	var chart;
+	$(document).ready(function() {
+		chart = new Highcharts.Chart({
+			chart: {
+				renderTo: 'movie-stats-graph',
+				defaultSeriesType: 'line',
+				marginRight: 130,
+				marginBottom: 25
+			},
+			title: {
+				text: 'Movie Popularity',
+				x: -20 //center
+			},
+			subtitle: {
+				text: 'Swarm size overtime',
+				x: -20
+			},
+			xAxis: {
+				categories: [<%= movie.movie_stats.order(:day).collect { |s| "'#{s.day.to_s}'" }.join(', ') %>]
+			},
+			yAxis: {
+				title: {
+					text: 'Size'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				formatter: function() {
+		                return '<b>'+ this.series.name +'</b><br/>'+
+						this.x +': '+ this.y +'°C';
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -10,
+				y: 100,
+				borderWidth: 0
+			},
+			series: [{
+				name: 'Seeds',
+				data: <%= movie.movie_stats.order(:day).collect { |s| s.seeds }.to_json %>
+			}, {
+				name: 'Leaches',
+				data: <%= movie.movie_stats.order(:day).collect { |s| s.leaches }.to_json %>
+			}]
+		});
+		
+		
+	});
+		
+</script>
