@@ -30,6 +30,7 @@ gem 'will_paginate', '3.0.pre'
 
 group :development do
 	gem "rspec-rails", ">= 2.0.0.beta.17"
+  gem "mongrel"	
 end
 
 group :test do

@@ -1,9 +1,7 @@
 <div class="movie-tile">
-	<% unless movie_tile.images.small.blank? %>
-		<%= image_tag(movie_tile.images.small.file_name, :alt => movie_tile.display_name) %>
-	<% else %>
-		<%= image_tag('no_preview.jpg', :alt => "No preview") %>
-	<% end %>
+	<%= link_to movie_tile.images.small.blank? ? image_tag('no_preview.jpg', :alt => "No preview") : image_tag(movie_tile.images.small.file_name, 
+		:alt => movie_tile.display_name), movie_tile %>
+	
 	<h6><%= movie_tile.display_name %></h6> 
 	<div class="movie-badges">[<%= movie_tile.torrents.latest_seeds_count %> / <%= movie_tile.torrents.latest_leaches_count %>]</div>
 </div>	

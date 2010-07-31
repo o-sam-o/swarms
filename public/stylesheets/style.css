@@ -17,3 +17,11 @@
 .movies_paginator {
   clear: left;
 }
+
+#movie-show-sidebar .poster {
+  width: 265px;
+  margin-top: 10px;
+  -moz-box-shadow: 0px 0px 7px black;
+  -webkit-box-shadow: 0px 0px 7px black;   
+  box-shadow: 0px 0px 7px black;  
+}

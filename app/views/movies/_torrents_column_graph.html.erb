@@ -1,0 +1,55 @@
+<div id="current-torrents-graph" style="width: 600px; height: 300px; margin: 0 auto"></div>
+
+<!-- 2. Add the JavaScript to initialize the chart on document ready --> 
+<script type="text/javascript"> 
+	$(document).ready(function() {
+		var torrentNames = {<%= movie.torrents.collect { |t| "'#{t.name.first(20)}' : '#{t.name}'" }.join(', ') %>}		
+		var chart = new Highcharts.Chart({
+			chart: {
+				renderTo: 'current-torrents-graph',
+				borderRadius: 15,		
+				defaultSeriesType: 'column'
+			},
+			title: {
+				text: 'Latest Torrents'
+			},
+			xAxis: {
+				categories: [<%= movie.torrents.collect { |t| "'#{t.name.first(20)}'" }.join(', ') %>]
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Swarm'
+				}
+			},
+			legend: {
+
+				backgroundColor: '#FFFFFF',
+				borderColor: '#CCC',
+				borderWidth: 1,
+				shadow: false
+			},
+			tooltip: {
+				formatter: function() {
+					return '<b>'+ torrentNames[this.x] +'</b><br/>'+
+						 this.series.name +': '+ this.y +'<br/>'+
+						 'Total: '+ this.point.stackTotal;
+				}
+			},
+			plotOptions: {
+				column: {
+					stacking: 'normal'
+				}
+			},
+		    series: [{
+				name: 'Seeds',
+				data: <%= movie.torrents.collect { |t| t.stats.latest.seeds }.to_json %>
+			}, {
+				name: 'Leaches',
+				data: <%= movie.torrents.collect { |t| t.stats.latest.leaches }.to_json %>
+			}]
+		});
+		
+		
+	});		
+</script>

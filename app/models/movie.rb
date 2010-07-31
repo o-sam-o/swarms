@@ -17,7 +17,12 @@ class Movie < ActiveRecord::Base
     def small
       self.select { |i| i.format == 'small' }.first
     end  
+    def poster
+      self.select { |i| i.format == 'poster' }.first
+    end    
   end
+  
+  has_many :movie_stats
   
   def images
     movie_images

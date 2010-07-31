@@ -1,0 +1,41 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'highcharts' %>
+<% end %>
+
+<% content_for :main_title do %>
+  <%= @movie.display_name %>
+<% end %>
+
+<% unless @movie.torrents.empty? %>
+	
+	<%= render :partial => "torrents_column_graph", :locals => {:movie => @movie} %>
+	
+	<table>
+		<tr>
+			<th>Torrent</th>
+			<th>Date</th>
+			<th>Seeds</th>
+			<th>Leaches</th>
+		</tr>
+		<% @movie.torrents.each do |torrent| %>
+			<tr>
+				<td><%= torrent.name %></td>
+				<td><%= torrent.stats.latest.created_at %></td>
+				<td><%= torrent.stats.latest.seeds %></td>
+				<td><%= torrent.stats.latest.leaches %></td>
+			</tr>
+		<% end %>	
+	</table>
+	
+<% else %>
+	No torrent stats.
+<% end %>
+
+<% content_for :sidebar do %>
+  <div id="movie-show-sidebar">
+	  <% unless @movie.images.poster.blank? %>
+		<%= image_tag @movie.images.poster.file_name, :alt => @movie.display_name, :class => 'poster' %>
+	  <% end %>
+  </div>
+<% end %>
+
