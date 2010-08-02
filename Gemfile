@@ -37,6 +37,10 @@ group :test do
 	gem "rspec-rails", ">= 2.0.0.beta.17"
 end
 
+group :production do
+	gem "mysql"
+end
+
 # Bundle gems for certain environments:
 # gem 'rspec', :group => :test
 # group :test do

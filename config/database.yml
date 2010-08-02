@@ -16,7 +16,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  database: swarms
+  encoding: utf8
+  username: swarms
+  password: password_here
+  host: localhost    
   pool: 5
   timeout: 5000
