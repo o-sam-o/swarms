@@ -21,8 +21,8 @@
 		<div class="wrapper clear"> 
 			<div id="pg-nav"> 
 				<ul class="nav"> 
-					<li class="page_item current_page_item"><a href="http://wp-themes.com">Home</a></li> 
-					<li class="page_item page-item-2"><a href="http://wp-themes.com/?page_id=2" title="About">About</a></li> 
+					<li class="page_item current_page_item"><%= link_to "Home", root_path %></li> 
+					<li class="page_item page-item-2"><%= link_to "About", about_path %></li> 
 				</ul> 
 			</div><!--end page-navigation--> 
 		</div><!--end wrapper--> 
@@ -31,7 +31,7 @@
 	<div class="wrapper big"> 
 		<div id="header" class="clear"> 
 			<div class="logo"> 
-				<h1 id="title"><a href="http://wp-themes.com">Swarms</a></h1>				
+				<h1 id="title"><%= link_to "Swarms", root_path %></h1>				
 				<div id="description"> 
 					Movie torrent statistics			
 				</div><!--end description--> 
@@ -70,10 +70,10 @@
 				<li class="widget"> 
 					<h2 class="widgettitle">Pages</h2> 
 					<ul> 
-						<li class="page_item page-item-2"><a href="http://wp-themes.com/?page_id=2" title="About">About</a></li> 
-						<li class="page_item page-item-46"><a href="http://wp-themes.com/?page_id=46" title="Parent Page">Parent Page</a> 
+						<li class="page_item page-item-2"><a href="#" title="About">About</a></li> 
+						<li class="page_item page-item-46"><a href="#" title="Parent Page">Parent Page</a> 
 						<ul class='children'> 
-								<li class="page_item page-item-49"><a href="http://wp-themes.com/?page_id=49" title="Sub-page">Sub-page</a></li> 
+								<li class="page_item page-item-49"><a href="#" title="Sub-page">Sub-page</a></li> 
 							</ul> 
 						</li> 
 					</ul> 
@@ -82,7 +82,7 @@
 		</div> 
 		<div id="footer-search" class="footer-column"> 
 			<h2>Search</h2> 
-				<form method="get" id="search_form" action="http://wp-themes.com/"> 
+				<form method="get" id="search_form" action="#"> 
 					<input type="text"	name="s" id="s" class="search"/> 
 					<input type="submit" id="searchsubmit" value="Search" /> 
 				</form> 

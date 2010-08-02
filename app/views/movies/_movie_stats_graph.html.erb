@@ -7,9 +7,10 @@
 		chart = new Highcharts.Chart({
 			chart: {
 				renderTo: 'movie-stats-graph',
-				defaultSeriesType: 'line',
-				marginRight: 130,
-				marginBottom: 25
+				defaultSeriesType: 'area',
+				marginRight: 20,
+				
+				borderRadius: 15
 			},
 			title: {
 				text: 'Movie Popularity',
@@ -20,7 +21,7 @@
 				x: -20
 			},
 			xAxis: {
-				categories: [<%= movie.movie_stats.order(:day).collect { |s| "'#{s.day.to_s}'" }.join(', ') %>]
+				categories: [<%= movie.movie_stats.order(:day).collect { |s| "'#{s.day.strftime('%d %b %y')}'" }.join(', ') %>]
 			},
 			yAxis: {
 				title: {
@@ -35,23 +36,31 @@
 			tooltip: {
 				formatter: function() {
 		                return '<b>'+ this.series.name +'</b><br/>'+
-						this.x +': '+ this.y +'°C';
+						this.x +': '+ this.y;
 				}
 			},
 			legend: {
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'top',
-				x: -10,
-				y: 100,
-				borderWidth: 0
+				backgroundColor: '#FFFFFF',
+				borderColor: '#CCC',
+				borderWidth: 1
 			},
+			plotOptions: {
+				area: {
+					stacking: 'normal',
+					lineColor: '#666666',
+					lineWidth: 1,
+					marker: {
+						lineWidth: 1,
+						lineColor: '#666666'
+					}
+				}
+			},			
 			series: [{
-				name: 'Seeds',
-				data: <%= movie.movie_stats.order(:day).collect { |s| s.seeds }.to_json %>
-			}, {
 				name: 'Leaches',
 				data: <%= movie.movie_stats.order(:day).collect { |s| s.leaches }.to_json %>
+			}, {
+				name: 'Seeds',
+				data: <%= movie.movie_stats.order(:day).collect { |s| s.seeds }.to_json %>
 			}]
 		});
 		

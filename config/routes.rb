@@ -1,6 +1,7 @@
 Swarm::Application.routes.draw do |map|
 
   root :to => "home#index"
+  match 'about', :to => "home#about", :as => 'about'
   
   resources :movies
 
