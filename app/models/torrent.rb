@@ -14,7 +14,7 @@ class Torrent < ActiveRecord::Base
   end
   
   def cleaned_name
-    Util::FileNameCleaner.get_name_info(name)
+    ToName.to_name(name)
   end  
   
   private

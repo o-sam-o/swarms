@@ -1,3 +1,9 @@
+h1 {
+  font-size: 2em;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
 .movie-tile {
   float: left;
   padding: 5px;

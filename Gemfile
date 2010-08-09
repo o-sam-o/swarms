@@ -8,10 +8,11 @@ gem 'rails', '>= 3.0.0.rc'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'yayimdbs', :require => 'yay_imdbs'
+gem 'toname', :require => 'to_name'
 
 gem 'imagesize', :require => 'image_size'
 
-gem 'will_paginate', '3.0.pre'
+gem 'will_paginate', '>= 3.0.pre2'
 
 # Use unicorn as the web server
 # gem 'unicorn'

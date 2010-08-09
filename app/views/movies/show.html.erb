@@ -3,8 +3,10 @@
 <% end %>
 
 <% content_for :main_title do %>
-  <%= @movie.display_name %>
+  Movie Stats
 <% end %>
+
+<h1><%= @movie.display_name %></h1>
 
 <% unless @movie.torrents.empty? %>
 	
@@ -31,6 +33,10 @@
 	
 <% else %>
 	No torrent stats.
+<% end %>
+
+<% content_for :sidebar_title do %>
+  Movie Summary
 <% end %>
 
 <% content_for :sidebar do %>

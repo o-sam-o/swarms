@@ -78,15 +78,15 @@ div.skip-content { display: none; }
 ------------------------------------------------------------ */
 #header { padding-bottom: 20px; }
 div.logo { float: left; }
-h1#title, div#title, div.logo img {
+h2#title, div#title, div.logo img {
 	padding: 30px 0 0 20px;
 	font-size: 3em;
 	color: #f8f8f8;
 	font-weight: bold;
 	text-shadow: 0 2px 0 #000;
 }
-h1#title a:link, h1#title a:visited, div#title a:link, div#title a:visited	{ color: #fff; }
-h1#title a:hover, div#title a:hover { text-decoration: none; }
+h2#title a:link, h2#title a:visited, div#title a:link, div#title a:visited	{ color: #fff; }
+h2#title a:hover, div#title a:hover { text-decoration: none; }
 div.banner {
 	float: right;
 	margin: 20px 0 0 0;
@@ -503,7 +503,7 @@ img.index-post-thm { margin-bottom: 30px; }
 	margin: 0;
 	padding-bottom: 15px;
 }
-h1.title {
+h2.title {
 	margin: 0;
 	padding: 0 0 20px 0;
 	font-size: 2.4em;

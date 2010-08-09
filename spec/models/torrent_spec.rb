@@ -41,12 +41,12 @@ describe Torrent do
     it 'should try to find the movie if its already presnet' do
       torrent = Torrent.new(:name => 'test.torrent', :movie => @movie)
       torrent.should_receive(:associate_with_movie)
-      Util::FileNameCleaner.should_not_receive(:get_name_info)
+      ToName.should_not_receive(:to_name)
       torrent.save!
     end
   
     it 'should try to find similar movies by name' do
-      Util::FileNameCleaner.should_receive(:get_name_info).and_return(mock(:file_info, :name => 'test', :year => '').as_null_object)
+      ToName.should_receive(:to_name).and_return(mock(:file_info, :name => 'test', :year => '').as_null_object)
       Movie.should_receive(:find_by_name).with('test').and_return(@movie)
       
       torrent = Torrent.create!(:name => 'test.torrent')
@@ -55,7 +55,7 @@ describe Torrent do
     end  
   
     it 'should try to find similar movies by name and year' do
-      Util::FileNameCleaner.should_receive(:get_name_info).and_return(mock(:file_info, :name => 'test', :year => 2000))
+      ToName.should_receive(:to_name).and_return(mock(:file_info, :name => 'test', :year => 2000))
       Movie.should_receive(:find_by_name_and_year).with('test', 2000).and_return(@movie)
       
       torrent = Torrent.create!(:name => 'test[2000].torrent')
@@ -64,7 +64,7 @@ describe Torrent do
     end
   
     it 'should search imdb if it cant find similar movies' do
-      Util::FileNameCleaner.should_receive(:get_name_info).and_return(mock(:file_info, :name => 'test', :year => 2000))
+      ToName.should_receive(:to_name).and_return(mock(:file_info, :name => 'test', :year => 2000))
       Movie.should_receive(:find_by_name_and_year).with('test', 2000).and_return(nil)
       YayImdbs.should_receive(:search_for_imdb_id).and_return('123')
       Movie.should_receive(:find_or_create_by_imdb_id).with('123').and_return(@movie)
