@@ -3,33 +3,45 @@
 <% end %>
 
 <% content_for :main_title do %>
-  Movie Stats
+  <%= @movie.display_name %>
 <% end %>
-
-<h1><%= @movie.display_name %></h1>
 
 <% unless @movie.torrents.empty? %>
 	
-	<%= render :partial => "movie_stats_graph", :locals => {:movie => @movie} %>
+	<div id="content-tabs">
+		<ul>
+			<li><a href="#content-tabs-info">Summary</a></li> 
+			<li><a href="#content-tabs-historic-stats">Historic Trends</a></li> 
+			<li><a href="#content-tabs-torrent-column">Torrent Files</a></li>			
+		</ul>
+		<div id="content-tabs-info">
+			<p id="plot-summary">
+			<strong>Plot:</strong> In a world where technology exists to enter the human mind through dream invasion, a highly skilled thief is given a final chance at redemption which involves executing his toughest job till date, Inception.
+			</p>
+			<p>
+				<strong>Current Rank:</strong> 1st
+			</p>			
+			<p>
+				<strong>Popularity Score:</strong> 532000
+			</p>
+			
+<iframe class="youtube-player" type="text/html" width="560" height="340" src="http://www.youtube.com/embed/1Sd0ff1sbJU" frameborder="0"></iframe>
+			
+						
+		</div>
+		<div id="content-tabs-historic-stats">
+			<%= render :partial => "movie_stats_graph", :locals => {:movie => @movie} %>
+		</div>
+		<div id="content-tabs-torrent-column">
+			<%= render :partial => "torrents_column_graph", :locals => {:movie => @movie} %>
+		</div>
+	</div>
 	
-	<%= render :partial => "torrents_column_graph", :locals => {:movie => @movie} %>
-	
-	<table>
-		<tr>
-			<th>Torrent</th>
-			<th>Date</th>
-			<th>Seeds</th>
-			<th>Leaches</th>
-		</tr>
-		<% @movie.torrents.each do |torrent| %>
-			<tr>
-				<td><%= torrent.name %></td>
-				<td><%= torrent.stats.latest.created_at %></td>
-				<td><%= torrent.stats.latest.seeds %></td>
-				<td><%= torrent.stats.latest.leaches %></td>
-			</tr>
-		<% end %>	
-	</table>
+	<script type="text/javascript">
+		$(function() {
+			$("#content-tabs").tabs();
+		});	
+	</script>
 	
 <% else %>
 	No torrent stats.
@@ -45,5 +57,36 @@
 		<%= image_tag @movie.images.poster.file_name, :alt => @movie.display_name, :class => 'poster' %>
 	  <% end %>
   </div>
+
+  <table id="movie-summary-table" class="rounded-table">
+	  <tbody>
+		<tr>
+		<td>Director</td>
+		<td>Christopher Nolan</td>
+		</tr>
+		<tr>		
+			<td>Runtime</td>
+			<td>148 min</td>
+		</tr>
+		<tr>
+		<td>Release Date</td>
+		<td>22 July 2010</td>
+	</tr>
+	<tr>		
+		<td>Classification</td>
+		<td>PG-13</td>
+	</tr>
+	<tr>		
+		<td>Language</td>
+		<td>English</td>		
+	</tr>	
+	<tr>	
+		<td>Genres</td>
+		<td>
+			Action, Mystery, Sci-Fi, Thriller
+		</td>		
+		</tr>
+	  </tbody>
+  </table>
 <% end %>
 

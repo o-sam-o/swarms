@@ -1,12 +1,21 @@
- * Home page
-	* Sort by popularity + pagination
- * Scrap more stats
- * Start recording stats
+ * Finalise Movie show page
+  * Scrap more data
+ * Add trailer
+ * Homepage side bar
+ * Fix graph when lots of data points
+ * Javascript 'download' link
+
+ * Filter by genre
+ * Search
  
+ * About page
+ * Google analytics
+
+ * Deploy to prod server
+ -- Post 0.1
  * Cucumber
- * View movie page
- * Movie stats graph
- * Movie trailer preview
+
+
  * Check if dvd is available
  * Badges + sparkle lines
 
