@@ -39,12 +39,12 @@
 					stacking: 'normal'
 				}
 			},
-		    series: [{
-				name: 'Seeds',
-				data: <%= movie.torrents.collect { |t| t.stats.latest.seeds }.to_json %>
-			}, {
+		  series: [{
 				name: 'Leaches',
 				data: <%= movie.torrents.collect { |t| t.stats.latest.leaches }.to_json %>
+			},{
+				name: 'Seeds',
+				data: <%= movie.torrents.collect { |t| t.stats.latest.seeds }.to_json %>
 			}]
 		});
 		

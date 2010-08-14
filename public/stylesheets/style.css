@@ -19,6 +19,80 @@ h1 {
   box-shadow: 0px 0px 7px black;           
 }
 
+.label {
+  font-weight: bold;
+}
+
+#score-entry {
+  height: 60px;
+}
+
+#rank-label {
+  float: left;
+  padding-top: 8px;
+}
+
+#rank-badge {
+  float: left;
+}
+
+#popularity-score {
+  float: left;
+  padding-top: 8px;
+  padding-left: 20px;
+}
+
+.badge {
+  background-image: url(../images/blank_badge.png);
+  background-repeat:no-repeat;
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
+
+.badge .number {
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  left: 16px;
+  top: 11px;
+}
+
+.badge .ordinal {
+  position: absolute;
+  right: 11px;
+  top: 7px;
+}
+
+.badge .number-2d {
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  left: 14px;
+  top: 13px;
+}
+
+.badge .ordinal-2d {
+  font-size: 9px;
+  position: absolute;
+  right: 7px;
+  top: 10px;
+}
+
+.badge .number-3d {
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  left: 13px;
+  top: 12px;
+}
+
+#graph-tabs {
+  margin-bottom: 10px;
+}
+
+
+
 .movies_paginator {
   clear: left;
 }
