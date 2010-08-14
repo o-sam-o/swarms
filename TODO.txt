@@ -1,7 +1,8 @@
  * Finalise Movie show page
   * Scrap more data
  * Add trailer
- * Homepage side bar
+ * Stle home page
+    * Homepage side bar
  * Fix graph when lots of data points
  * Javascript 'download' link
 
@@ -11,10 +12,22 @@
  * About page
  * Google analytics
 
- * Deploy to prod server
- -- Post 0.1
- * Cucumber
+ * Change url to use movie name + year not id
+ * Set title on movie show page
+ 
+ * Branding + Name
 
+ * Clicking on poster on show page (Javascript zoom)
+ * Change background shadow on hover on home page
+ * No poster image
+
+ * Javascript for paging home page
+
+ * Cucumbers
+
+ * Deploy to prod server 
+
+-- Post 0.1
 
  * Check if dvd is available
  * Badges + sparkle lines
