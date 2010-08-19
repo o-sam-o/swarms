@@ -1,5 +1,6 @@
 <% content_for :head do %>
 	<%= javascript_include_tag 'highcharts' %>
+	<%= javascript_include_tag 'highcharts.settings' %>
 <% end %>
 
 <% content_for :main_title do %>
@@ -30,6 +31,7 @@
       <div id="popularity-score">
         <strong>Swarm Size:</strong> 532000
        </div>
+	     <%= image_tag 'up.png', :alt => 'Up', :class => 'popularity-score-trend' %>
     </div>
   </div>
 
