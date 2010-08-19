@@ -1,7 +1,7 @@
  * Finalise Movie show page
   * Scrap more data
  * Add trailer
- * Stle home page
+ * Style home page
     * Homepage side bar
  * Fix graph when lots of data points
  * Javascript 'download' link
@@ -27,7 +27,7 @@
 
  * Deploy to prod server 
 
--- Post 0.1
+---------------------- Post 0.1
 
  * Check if dvd is available
  * Badges + sparkle lines

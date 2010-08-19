@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100731041711) do
+ActiveRecord::Schema.define(:version => 20100819192416) do
+
+  create_table "genres", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "genres_movies", :id => false, :force => true do |t|
+    t.integer "movie_id"
+    t.integer "genre_id"
+  end
 
   create_table "movie_images", :force => true do |t|
     t.integer  "movie_id"
@@ -33,12 +44,18 @@ ActiveRecord::Schema.define(:version => 20100731041711) do
 
   create_table "movies", :force => true do |t|
     t.string   "name"
-    t.text     "description"
+    t.text     "plot"
     t.string   "imdb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year"
     t.integer  "swarm_score"
+    t.string   "director"
+    t.string   "classification"
+    t.string   "language"
+    t.integer  "runtime"
+    t.date     "release_date"
+    t.integer  "current_rank"
   end
 
   create_table "torrent_stats", :force => true do |t|

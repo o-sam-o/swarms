@@ -23,6 +23,7 @@ class Movie < ActiveRecord::Base
   end
   
   has_many :movie_stats
+  has_and_belongs_to_many :genres
   
   def images
     movie_images
@@ -47,7 +48,10 @@ class Movie < ActiveRecord::Base
   end  
   
   def self.create_from_imdb_info(imdb_info, imdb_id)
-    movie = Movie.create!(:name => imdb_info['title'], :year => imdb_info['year'], :imdb_id => imdb_id) 
+    movie = Movie.create!(:name => imdb_info[:title], :year => imdb_info[:year], :plot => imdb_info[:plot],
+                          :director => imdb_info[:director], :language => imdb_info[:language], :classification => imdb_info[:mpaa],
+                          :genres => imdb_info[:genre].blank? ? [] : imdb_info[:genre].collect{|name| Genre.find_or_create_by_name(name)},
+                          :imdb_id => imdb_id) 
     
     MovieImage.download_image(imdb_info[:small_image], movie, :small) if imdb_info[:small_image]
     MovieImage.download_image(imdb_info[:large_image], movie, :poster) if imdb_info[:large_image]
