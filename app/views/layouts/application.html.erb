@@ -14,6 +14,9 @@
 	<%= javascript_include_tag 'jquery-ui-1.8.4.custom.min' %>
 	<%= csrf_meta_tag %>
 
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+  <link  href="//fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" type="text/css" >
+
 	<%= yield :head %>
 </head>
 
@@ -41,7 +44,7 @@
 		</div><!--end header--> 
 			
 		<div id="main-top"> 
-			<h4><%= yield :main_title %></h4> 
+			<h1><%= yield :main_title %></h1> 
 			<div class="subscribe"> 
 				<h5><%= yield :sidebar_title %></h5> 
 			</div>	

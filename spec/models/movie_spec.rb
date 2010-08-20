@@ -98,13 +98,16 @@ describe Movie do
   context :create_from_imdb_info do
     it 'should populate movie fields from imdb data' do
       info = {:title => 'title', :year => 2000, :director => 'director', :language => 'English', 
-              :plot => 'plot here', :mpaa => 'pg', :not_used_data => 'dummy', :genre => ['Action']}.with_indifferent_access
+              :plot => 'plot here', :mpaa => 'pg', :not_used_data => 'dummy', 
+              :runtime => 100, :release_date => Date.civil(2010, 1, 1),
+              :genre => ['Action']}.with_indifferent_access
       
       genre = mock(:genre).as_null_object
       Genre.should_receive(:find_or_create_by_name).with('Action').and_return(genre)
 
       Movie.should_receive(:create!).with({:name => 'title', :year => 2000, :director => 'director', 
                                           :language => 'English', :plot => 'plot here', :classification => 'pg',
+                                          :runtime => 100, :release_date => Date.civil(2010, 1, 1),
                                           :genres => [genre], :imdb_id => '123'})
       
 
@@ -128,5 +131,17 @@ describe Movie do
       
       Movie.create_from_imdb_info({'title' => 'test', 'year' => 2000}, '123')
     end    
-  end  
+  end 
+
+ it 'should refresh from imdb' do
+    info = mock(:info)
+    YayImdbs.should_receive(:scrap_movie_info).with('123').and_return(info)    
+    params = mock(:params)
+    Movie.should_receive(:convert_imdb_info_to_params).with(info, '123').and_return(params)
+    
+    movie = Movie.new(:imdb_id => '123')
+    movie.should_receive(:update_attributes!).with(params)
+    movie.refresh_from_imdb!
+ end
+
 end

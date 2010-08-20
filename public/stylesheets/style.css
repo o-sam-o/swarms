@@ -1,6 +1,7 @@
-h1 {
-  font-size: 2em;
-  padding-bottom: 10px;
+#title {
+  font-family: 'Lobster', Helvetica, "Helvetica Neue", Arial, sans-serif;
+  text-shadow: #BBBABA 0px 2px 1px!important;
+  font-size: 40px!important;
 }
 
 .movie-tile {
@@ -98,7 +99,9 @@ h1 {
   margin-bottom: 10px;
 }
 
-
+#content-info {
+  min-height: 35px;
+}
 
 .movies_paginator {
   clear: left;
@@ -216,6 +219,7 @@ h1 {
 
 .first-word {
   font-weight: bold;
+  font-family: 'Vollkorn', Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
 }
 

@@ -38,6 +38,13 @@ class Movie < ActiveRecord::Base
     update_attribute(:swarm_score, latest_stats.sum(:seeds) + latest_stats.sum(:leaches))
   end  
   
+  def refresh_from_imdb!
+    raise "Unable to refresh #{self.id} as no imdb id" if self.imdb_id.blank?
+    
+    imdb_info = YayImdbs.scrap_movie_info(self.imdb_id)
+    self.update_attributes!(Movie.convert_imdb_info_to_params(imdb_info, self.imdb_id))
+  end 
+
   def self.find_or_create_by_imdb_id(imdb_id)
     movie = Movie.find_by_imdb_id(imdb_id)
     return movie if movie
@@ -48,14 +55,24 @@ class Movie < ActiveRecord::Base
   end  
   
   def self.create_from_imdb_info(imdb_info, imdb_id)
-    movie = Movie.create!(:name => imdb_info[:title], :year => imdb_info[:year], :plot => imdb_info[:plot],
-                          :director => imdb_info[:director], :language => imdb_info[:language], :classification => imdb_info[:mpaa],
-                          :genres => imdb_info[:genre].blank? ? [] : imdb_info[:genre].collect{|name| Genre.find_or_create_by_name(name)},
-                          :imdb_id => imdb_id) 
+    movie = Movie.create!(self.convert_imdb_info_to_params(imdb_info, imdb_id)) 
     
     MovieImage.download_image(imdb_info[:small_image], movie, :small) if imdb_info[:small_image]
     MovieImage.download_image(imdb_info[:large_image], movie, :poster) if imdb_info[:large_image]
     
     return movie  
-  end  
+  end
+
+private
+
+  def self.convert_imdb_info_to_params(imdb_info, imdb_id)
+    {
+     :name => imdb_info[:title], :year => imdb_info[:year], :plot => imdb_info[:plot],
+     :director => imdb_info[:director], :language => imdb_info[:language], :classification => imdb_info[:mpaa],
+     :genres => imdb_info[:genre].blank? ? [] : imdb_info[:genre].collect{|name| Genre.find_or_create_by_name(name)},
+     :runtime => imdb_info[:runtime], :release_date => imdb_info[:release_date],
+     :imdb_id => imdb_id
+    }
+  end 
+
 end
