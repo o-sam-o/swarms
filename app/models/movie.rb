@@ -1,6 +1,8 @@
 class Movie < ActiveRecord::Base
   validates_presence_of :name, :year
   
+  before_update :set_previous_score
+
   has_many :torrents do
     def latest_swarm_count
       self.inject(0) { |result, torrent| result + torrent.stats.latest.swarm_size }
@@ -33,6 +35,18 @@ class Movie < ActiveRecord::Base
     year? ? "#{name} (#{year})" : name
   end  
   
+  def set_previous_score 
+    self.previous_swarm_score = swarm_score_was if swarm_score_changed?
+  end 
+
+  def swarm_score_up?
+   swarm_score? && previous_swarm_score? && swarm_score > previous_swarm_score
+  end 
+
+  def swarm_score_down?
+    swarm_score? && previous_swarm_score? && swarm_score < previous_swarm_score
+  end  
+
   def update_swarm_score(after)
     latest_stats = Movie.joins(:torrents => :torrent_stats).where("movies.id = ? and torrent_stats.created_at >= ?", self.id, after)
     update_attribute(:swarm_score, latest_stats.sum(:seeds) + latest_stats.sum(:leaches))

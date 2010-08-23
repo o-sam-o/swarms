@@ -144,4 +144,39 @@ describe Movie do
     movie.refresh_from_imdb!
  end
 
+ context 'previous swarm score' do
+  it 'should set the previous score is swarm score changes' do
+   m = Movie.create!(:name => 'test', :year => 2000, :swarm_score => 100)
+   m.previous_swarm_score.should be_nil
+   m.update_attributes!(:swarm_score => 200)
+    
+   m.swarm_score.should == 200
+   m.previous_swarm_score.should == 100
+  end
+
+  it 'should not update previous score if update doesnt change swarm score' do
+   m = Movie.create!(:name => 'test', :year => 2000, :swarm_score => 200, :previous_swarm_score => 100)
+   m.previous_swarm_score.should == 100
+   m.update_attributes!(:name => 'new')
+    
+   m.swarm_score.should == 200
+   m.previous_swarm_score.should == 100
+  end  
+ end 
+
+  it 'should detect if swarm score is up' do
+    m = Movie.new(:swarm_score => 10, :previous_swarm_score => 5)
+    m.should be_swarm_score_up
+
+    m.swarm_score = 5
+    m.should_not be_swarm_score_up
+  end
+
+  it 'should detect if swarm score is down' do
+    m = Movie.new(:swarm_score => 5, :previous_swarm_score => 10)
+    m.should be_swarm_score_down
+
+    m.swarm_score = 10
+    m.should_not be_swarm_score_down
+  end 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100819192416) do
+ActiveRecord::Schema.define(:version => 20100823181728) do
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20100819192416) do
     t.integer  "runtime"
     t.date     "release_date"
     t.integer  "current_rank"
+    t.string   "movie_code"
+    t.integer  "previous_swarm_score"
   end
 
   create_table "torrent_stats", :force => true do |t|

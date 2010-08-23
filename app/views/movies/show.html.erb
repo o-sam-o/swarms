@@ -32,11 +32,19 @@
     </div>
     <div id="score-entry" class="entry">
       <div id="rank-label" class="label">Current Rank:</div>
-      <div id="rank-badge" class="badge"><div class="number">1</div><div class="ordinal">st</div></div>
+      <% if @movie.current_rank.present? %>
+        <div id="rank-badge" class="badge"><div class="number">1</div><div class="ordinal">st</div></div>
+      <% else %>
+        <div id="rank-na">NA</div>
+      <% end %>
       <div id="popularity-score">
         <strong>Swarm Size:</strong> <%= @movie.swarm_score %>
-       </div>
-	     <%= image_tag 'up.png', :alt => 'Up', :class => 'popularity-score-trend' %>
+      </div>
+      <% if @movie.swarm_score_up? %>
+        <%= image_tag 'up.png', :alt => 'Up', :class => 'popularity-score-trend' %>
+      <% elsif @movie.swarm_score_down? %>
+        <%= image_tag 'down.png', :alt => 'Down', :class => 'popularity-score-trend' %>
+      <% end %>
     </div>
   </div>
 
@@ -47,7 +55,9 @@
     <div class="entry">
       <p id="actions-container">
         <a href="#" class="action-link">Watch Trailer</a> 
-        <a href="http://www.imdb.com/title/tt<%= @movie.imdb_id %>" class="action-link">IMDB</a>
+        <% unless @movie.imdb_id.blank? %>
+          <a href="http://www.imdb.com/title/tt<%= @movie.imdb_id %>" class="action-link">IMDB</a>
+        <% end %>
         <a href="#" class="action-link">Download</a>
       </p>
     </div>
