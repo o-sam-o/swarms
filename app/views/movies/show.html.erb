@@ -33,7 +33,9 @@
     <div id="score-entry" class="entry">
       <div id="rank-label" class="label">Current Rank:</div>
       <% if @movie.current_rank.present? %>
-        <div id="rank-badge" class="badge"><div class="number">1</div><div class="ordinal">st</div></div>
+        <div id="rank-badge" class="badge">
+          <div class="<%= rank_number_class @movie.current_rank %>"><%= @movie.current_rank %></div>
+          <div class="<%= rank_ordinal_class @movie.current_rank %>"><%= ordinal @movie.current_rank %></div></div>
       <% else %>
         <div id="rank-na">NA</div>
       <% end %>

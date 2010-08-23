@@ -101,6 +101,10 @@
   top: 12px;
 }
 
+.badge .ordinal-3d {
+  display: none;
+}
+
 #graph-tabs {
   margin-bottom: 10px;
 }
