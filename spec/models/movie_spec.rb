@@ -170,6 +170,8 @@ describe Movie do
 
     m.swarm_score = 5
     m.should_not be_swarm_score_up
+    m.swarm_score = nil
+    m.should_not be_swarm_score_up
   end
 
   it 'should detect if swarm score is down' do
@@ -178,5 +180,39 @@ describe Movie do
 
     m.swarm_score = 10
     m.should_not be_swarm_score_down
-  end 
+
+    m.swarm_score = nil
+    m.should_not be_swarm_score_down
+  end
+
+  context 'movie code' do
+    it 'should set the movie code on save' do
+      m = Movie.create!(:name => 'Movie Name', :year => 2000)
+      m.movie_code.should == 'movie-name-2000'
+    end
+
+    it 'should handle duplicate codes' do
+      m = Movie.create!(:name => 'Movie', :year => 2000)
+      m.movie_code.should == 'movie-2000'
+
+      m2 = Movie.create!(:name => 'Movie', :year => 2000)
+      m2.movie_code.should == 'movie-2000-2'
+    end  
+
+    it 'should strip no ascii chars from a movie name' do
+      m = Movie.create!(:name => 'Movie !%/Name\(*)', :year => 2000)
+      m.movie_code.should == 'movie-name-2000'
+    end  
+
+    it 'should require the movie code to be unique' do
+      m = Movie.create!(:name => 'Movie', :year => 2000)
+      m.movie_code.should == 'movie-2000'
+
+      m2 = Movie.create!(:name => 'Movie', :year => 2000)
+      m2.movie_code.should == 'movie-2000-2'
+
+      m2.movie_code = 'movie-2000'
+      m2.should_not be_valid
+    end  
+  end
 end

@@ -1,7 +1,9 @@
 class Movie < ActiveRecord::Base
   validates_presence_of :name, :year
+  validates_uniqueness_of :movie_code
   
   before_update :set_previous_score
+  before_create :set_movie_code
 
   has_many :torrents do
     def latest_swarm_count
@@ -37,7 +39,20 @@ class Movie < ActiveRecord::Base
   
   def set_previous_score 
     self.previous_swarm_score = swarm_score_was if swarm_score_changed?
-  end 
+  end
+
+  def set_movie_code
+    return if self.movie_code
+
+    raw_code = "#{name.downcase.gsub(/\s/, '-').gsub(/[^a-z0-9\-]/, '')}-#{year}"
+    code = raw_code
+    n = 2
+    while Movie.exists?(:movie_code => code) 
+      code = "#{raw_code}-#{n}"
+      n = n + 1
+    end
+    self.movie_code = code
+  end  
 
   def swarm_score_up?
    swarm_score? && previous_swarm_score? && swarm_score > previous_swarm_score
