@@ -54,6 +54,11 @@ class Movie < ActiveRecord::Base
     self.movie_code = code
   end  
 
+  def to_param
+    movie_code
+  end
+
+
   def swarm_score_up?
    swarm_score? && previous_swarm_score? && swarm_score > previous_swarm_score
   end 
