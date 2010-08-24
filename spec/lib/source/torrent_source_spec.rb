@@ -15,9 +15,7 @@ describe Source::TorrentSource do
     Source::PirateBaySource.stub!(:new).and_return(pb_source)
     
     movie = mock(:movie).as_null_object
-    Movie.should_receive(:where).and_return(Movie)
-    Movie.should_receive(:order).and_return(Movie)
-    Movie.should_receive(:find_each).twice.and_yield(movie)
+    Movie.should_receive(:find_each).and_yield(movie)
     movie.should_receive(:update_swarm_score)
     
     Source::TorrentSource.update
@@ -29,9 +27,12 @@ describe Source::TorrentSource do
     
     movie = mock(:movie).as_null_object
     movie2 = mock(:movie).as_null_object
+    Movie.stub(:find_each)
+    
     Movie.should_receive(:where).and_return(Movie)
     Movie.should_receive(:order).and_return(Movie)
-    Movie.should_receive(:find_each).twice.and_yield(movie).and_yield(movie2)
+    Movie.should_receive(:each).and_yield(movie).and_yield(movie2)
+    
     movie.should_receive(:update_attribute).with(:current_rank, 1)
     movie2.should_receive(:update_attribute).with(:current_rank, 2)
     

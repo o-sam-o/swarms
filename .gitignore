@@ -5,3 +5,4 @@ tmp/**/*
 lib/.DS_Store
 .DS_Store
 public/images/posters/*
+*.swp

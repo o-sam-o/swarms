@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.0.0.rc'
+gem 'rails', '>= 3.0.0.rc2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -31,7 +31,7 @@ gem 'will_paginate', '>= 3.0.pre2'
 
 group :development do
 	gem "rspec-rails", ">= 2.0.0.beta.17"
-  gem "mongrel"	
+  gem "mongrel", ">= 1.2.0.pre2"	
 end
 
 group :test do
