@@ -1,13 +1,14 @@
 <% content_for :head do %>
 	<%= javascript_include_tag 'highcharts' %>
 	<%= javascript_include_tag 'highcharts.settings' %>
+	<%= javascript_include_tag 'jquery.cookie' %>
 <% end %>
 
 <% content_for :main_title do %>
   <%= @movie.display_name %>
 <% end %>
 
-<div id="show-movie">  
+<div id="show-movie">
   <div class="post">	
     <div class="side-title">
       <div class="side-title-text">PLOT</div>
@@ -60,7 +61,7 @@
         <% unless @movie.imdb_id.blank? %>
           <a href="http://www.imdb.com/title/tt<%= @movie.imdb_id %>" class="action-link">IMDB</a>
         <% end %>
-        <a href="#" class="action-link">Download</a>
+        <%= render :partial => 'download_link', :locals => {:title => @movie.name} %>
       </p>
     </div>
   </div>

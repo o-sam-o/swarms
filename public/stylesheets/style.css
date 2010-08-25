@@ -16,8 +16,8 @@
 
 .movie-tile img {
   -moz-box-shadow: 0px 0px 7px black;
-  -webkit-box-shadow: 0px 0px 7px black;   
-  box-shadow: 0px 0px 7px black;           
+  -webkit-box-shadow: 0px 0px 7px black;
+  box-shadow: 0px 0px 7px black;
 }
 
 .label {
@@ -104,6 +104,18 @@
 
 .badge .ordinal-3d {
   display: none;
+}
+
+#download-link-form {
+  font-weight: bold;
+}
+
+.validate-tips {
+  color: red;
+}
+
+.link-example {
+  display: block;
 }
 
 #graph-tabs {

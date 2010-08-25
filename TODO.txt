@@ -1,10 +1,10 @@
  * Finalise Movie show page
-  * Scrap more data
  * Add trailer
  * Style home page
     * Homepage side bar
  * Fix graph when lots of data points
  * Javascript 'download' link
+ * Youtube Trailer widget
 
  * Filter by genre
  * Search
@@ -12,7 +12,6 @@
  * About page
  * Google analytics
 
- * Change url to use movie name + year not id
  * Set title on movie show page
  
  * Branding + Name
@@ -37,6 +36,16 @@
  * Get torrent hash to avoid duplicates
  * Expire old torrents that we are no longer receiving stats for
 
+ * Add reason for spike to history graph (e.g. dvdrip released)
+ 
+ * Replace YQL 
+
+ * Graph seeds vs leaches
+ * Add release dates to historic graphs
+
+ * Allow different sort order on home page, e.g. latest first
+ 
+ * RSS feed (new movies?)
 
 Possible Badges:
 New Release, New Entry, Hot, Dvd, Not English, Trailer
