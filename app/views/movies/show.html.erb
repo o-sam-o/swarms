@@ -2,6 +2,7 @@
 	<%= javascript_include_tag 'highcharts' %>
 	<%= javascript_include_tag 'highcharts.settings' %>
 	<%= javascript_include_tag 'jquery.cookie' %>
+	<%= javascript_include_tag 'custom-download-link' %>
 <% end %>
 
 <% content_for :main_title do %>
@@ -61,7 +62,8 @@
         <% unless @movie.imdb_id.blank? %>
           <a href="http://www.imdb.com/title/tt<%= @movie.imdb_id %>" class="action-link">IMDB</a>
         <% end %>
-        <%= render :partial => 'download_link', :locals => {:title => @movie.name} %>
+        <a href="#" class="action-link download-link" movieTitle="<%= @movie.name %>">Download</a>
+        <%= render :partial => 'download_link_dialog' %>
       </p>
     </div>
   </div>
