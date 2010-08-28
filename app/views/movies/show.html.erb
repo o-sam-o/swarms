@@ -1,13 +1,23 @@
 <% content_for :head do %>
+	<%= stylesheet_link_tag 'prettyPhoto' %>
+
 	<%= javascript_include_tag 'highcharts' %>
 	<%= javascript_include_tag 'highcharts.settings' %>
 	<%= javascript_include_tag 'jquery.cookie' %>
 	<%= javascript_include_tag 'custom-download-link' %>
+  <%= javascript_include_tag 'jquery.prettyPhoto' %>
+  
 <% end %>
 
 <% content_for :main_title do %>
   <%= @movie.display_name %>
 <% end %>
+
+		<script type="text/javascript" charset="utf-8"> 
+		$(document).ready(function(){
+			$("a[rel^='prettyPhoto']").prettyPhoto({theme:'facebook'});
+		});
+		</script> 
 
 <div id="show-movie">
   <div class="post">	
@@ -58,7 +68,8 @@
     </div>
     <div class="entry">
       <p id="actions-container">
-        <a href="#" class="action-link">Watch Trailer</a> 
+      <a href="http://www.youtube.com/watch?v=QZ40WlshNwU" rel="prettyPhoto" 
+          title="<%= @movie.name + ' Trailer' %>" class="action-link">Watch Trailer</a> 
         <% unless @movie.imdb_id.blank? %>
           <a href="http://www.imdb.com/title/tt<%= @movie.imdb_id %>" class="action-link">IMDB</a>
         <% end %>
