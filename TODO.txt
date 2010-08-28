@@ -18,7 +18,7 @@
 
  * Clicking on poster on show page (Javascript zoom)
  * Change background shadow on hover on home page
- * No poster image
+ * No poster image (home + movie show page)
 
  * Javascript for paging home page
 
