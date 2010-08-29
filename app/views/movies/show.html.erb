@@ -16,7 +16,8 @@
 
 <script type="text/javascript" charset="utf-8"> 
   $(document).ready(function(){
-    $("a[rel^='youtubeSearch']").youtubeSearch();
+      $("a[rel^='youtubeSearch']").youtubeSearch();
+      $("a[rel^='prettyPhoto']").prettyPhoto({theme:'light_rounded'});
   });
 </script> 
 
@@ -118,8 +119,10 @@
 
 <% content_for :sidebar do %>
   <div id="movie-show-sidebar">
-	  <% unless @movie.images.poster.blank? %>
-		<%= image_tag @movie.images.poster.file_name, :alt => @movie.display_name, :class => 'poster' %>
+    <% unless @movie.images.poster.blank? %>
+      <a href="<%= image_path(@movie.images.poster.file_name) %>" rel="prettyPhoto">
+        <%= image_tag @movie.images.poster.file_name, :alt => @movie.display_name, :class => 'poster' %>
+      </a>
 	  <% end %>
   </div>
 

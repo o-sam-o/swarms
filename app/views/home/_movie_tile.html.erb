@@ -4,4 +4,5 @@
 	
 	<h6><%= movie_tile.display_name %></h6> 
 	<div class="movie-badges">[<%= movie_tile.torrents.latest_seeds_count %> / <%= movie_tile.torrents.latest_leaches_count %>]</div>
+  <%= render :partial => '/shared/watch_trailer', :locals => {:movie_title => movie_tile.name, :link_text => image_tag('youtube_icon.png')} %>
 </div>	

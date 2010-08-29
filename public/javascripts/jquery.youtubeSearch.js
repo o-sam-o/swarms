@@ -4,7 +4,7 @@ jQuery.fn.youtubeSearch = function() {
     $.ajax({url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(searchElement.attr('searchTerm')) +"&v=2&alt=jsonc&format=5", 
       success: function(data){
         searchElement.attr("href", data.data.items[0].player['default']);
-        searchElement.prettyPhoto({theme:'light_rounded'});
+        searchElement.prettyPhoto({theme:'light_rounded', showTitle:false, default_width:853, default_height:505});
     }});
   });
 };

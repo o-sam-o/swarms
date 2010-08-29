@@ -1,6 +1,23 @@
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'prettyPhoto' %>
+
+	<%= javascript_include_tag 'highcharts' %>
+	<%= javascript_include_tag 'highcharts.settings' %>
+	<%= javascript_include_tag 'jquery.cookie' %>
+	<%= javascript_include_tag 'custom-download-link' %>
+  <%= javascript_include_tag 'jquery.prettyPhoto' %>
+  <%= javascript_include_tag 'jquery.youtubeSearch' %> 
+<% end %>
+
 <% content_for :main_title do %>
   Most Popular Movies
 <% end %>
+
+<script type="text/javascript" charset="utf-8"> 
+  $(document).ready(function(){
+      $("a[rel^='youtubeSearch']").youtubeSearch({showTitle:false});
+  });
+</script> 
 
 <% unless @movies.blank? %>
 	<div class="movie_tiles">
@@ -12,6 +29,8 @@
 <% else %>
 	No movies.
 <% end %>
+
+<%= render :partial => '/shared/download_link_dialog' %>
 
 <% content_for :sidebar_title do %>
   Recent Additions
