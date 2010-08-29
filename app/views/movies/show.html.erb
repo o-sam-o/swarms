@@ -6,6 +6,7 @@
 	<%= javascript_include_tag 'jquery.cookie' %>
 	<%= javascript_include_tag 'custom-download-link' %>
   <%= javascript_include_tag 'jquery.prettyPhoto' %>
+  <%= javascript_include_tag 'jquery.youtubeSearch' %>
   
 <% end %>
 
@@ -13,21 +14,11 @@
   <%= @movie.display_name %>
 <% end %>
 
-		<script type="text/javascript" charset="utf-8"> 
-		$(document).ready(function(){
-        $("a[rel^='youtubeSearch']").each(function(){
-          var searchElement = $(this);
-          $.ajax({url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(searchElement.attr('title')) +"&v=2&alt=jsonc&format=5", 
-            success: function(data){
-            searchElement.attr("href", data.data.items[0].player['default']);
-            searchElement.prettyPhoto({theme:'light_rounded'});
-        }});
-        
-      //$("a[rel^='prettyPhoto']").prettyPhoto({theme:'light_rounded'});
-      })});
-
-    
-		</script> 
+<script type="text/javascript" charset="utf-8"> 
+  $(document).ready(function(){
+    $("a[rel^='youtubeSearch']").youtubeSearch();
+  });
+</script> 
 
 <div id="show-movie">
   <div class="post">	
@@ -78,11 +69,13 @@
     </div>
     <div class="entry">
       <p id="actions-container">
-      <a href="#" rel="youtubeSearch" 
-          title="<%= @movie.name + ' Trailer' %>" class="action-link">Watch Trailer</a> 
+      
+        <%= render :partial => '/shared/watch_trailer', :locals => {:movie_title => @movie.name} %>
+              
         <% unless @movie.imdb_id.blank? %>
           <a href="http://www.imdb.com/title/tt<%= @movie.imdb_id %>" class="action-link">IMDB</a>
         <% end %>
+        
         <a href="#" class="action-link download-link" movieTitle="<%= @movie.name %>">Download</a>
         <%= render :partial => 'download_link_dialog' %>
       </p>

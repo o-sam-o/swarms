@@ -114,6 +114,10 @@
   color: red;
 }
 
+.pp_description {
+  font-size: 12px;
+}
+
 .link-example {
   display: block;
 }
