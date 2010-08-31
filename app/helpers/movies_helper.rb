@@ -24,4 +24,8 @@ module MoviesHelper
     rank.ordinalize.gsub(/\d/, '')
   end  
 
+  def runtime_span(runtime)
+    %Q{<span class="tooltip" title="#{runtime / 60} hrs #{runtime % 60} mins">#{runtime} mins</span>} unless runtime.blank?
+  end
+
 end  

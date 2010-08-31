@@ -48,8 +48,13 @@
       <div id="rank-label" class="label">Current Rank:</div>
       <% if @movie.current_rank.present? %>
         <div id="rank-badge" class="badge">
-          <div class="<%= rank_number_class @movie.current_rank %>"><%= @movie.current_rank %></div>
-          <div class="<%= rank_ordinal_class @movie.current_rank %>"><%= ordinal @movie.current_rank %></div></div>
+          <div class="<%= rank_number_class @movie.current_rank %> <%= "badge-number-#{@movie.current_rank}" %>">
+            <%= @movie.current_rank %>
+          </div>
+          <div class="<%= rank_ordinal_class @movie.current_rank %>  <%= "badge-ordinal-#{@movie.current_rank}" %>">
+            <%= ordinal @movie.current_rank %>
+          </div>
+        </div>
       <% else %>
         <div id="rank-na">NA</div>
       <% end %>
@@ -57,9 +62,11 @@
         <strong>Swarm Size:</strong> <%= @movie.swarm_score %>
       </div>
       <% if @movie.swarm_score_up? %>
-        <%= image_tag 'up.png', :alt => 'Up', :class => 'popularity-score-trend' %>
+        <%= image_tag 'up.png', :alt => 'Up', :class => 'popularity-score-trend tooltip', 
+            :title => "Up from #{@movie.previous_swarm_score}" %>
       <% elsif @movie.swarm_score_down? %>
-        <%= image_tag 'down.png', :alt => 'Down', :class => 'popularity-score-trend' %>
+        <%= image_tag 'down.png', :alt => 'Down', :class => 'popularity-score-trend tooltip',
+            :title => "Down from #{@movie.previous_swarm_score}" %>
       <% end %>
     </div>
   </div>
@@ -129,8 +136,9 @@
   <table id="movie-summary-table" class="rounded-table">
     <tbody>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Director', :data => @movie.director} %>
-      <%= render :partial => "optional_row", :locals => {:data_label => 'Runtime', :data => @movie.runtime} %>
-      <%= render :partial => "optional_row", :locals => {:data_label => 'Release Date', :data => @movie.release_date} %>
+      <%= render :partial => "optional_row", :locals => {:data_label => 'Runtime', :data => runtime_span(@movie.runtime)} %>
+      <%= render :partial => "optional_row", :locals => {:data_label => 'Release Date', 
+            :data => @movie.release_date? ? @movie.release_date.strftime('%d %B %Y') : ''} %>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Classification', :data => @movie.classification} %>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Language', :data => @movie.language} %>
       <% if @movie.genres.present? %>

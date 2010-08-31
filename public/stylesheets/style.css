@@ -4,20 +4,52 @@
   font-size: 40px!important;
 }
 
+#simpleTooltip { 
+  background: #272727;
+  border: 8px solid #272727;
+  color: white;
+  padding: 3px;
+  font-size: 12px;
+}
+
+.trailer-badge {
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.movie-badges .action-link {
+  padding: 5px 5px!important;
+}
+
 .movie-tile {
   float: left;
   padding: 5px;
   width: 110px;
   height: 200px;
-}
-.movie-tile h6 {
-  line-height: 13px;
+  position: relative;
 }
 
-.movie-tile img {
+.movie-badges {
+  position: absolute;
+  bottom: 5px;
+}
+
+.movie-tile h6 {
+  line-height: 13px;
+  text-align: center;
+  width: 100px;
+}
+
+.poster-thumbnail {
   -moz-box-shadow: 0px 0px 7px black;
   -webkit-box-shadow: 0px 0px 7px black;
   box-shadow: 0px 0px 7px black;
+}
+
+.poster-thumbnail:hover {
+  -moz-box-shadow: 0px 0px 14px #0073EA;
+  -webkit-box-shadow: 0px 0px 14px #0073EA;
+  box-shadow: 0px 0px 14px #0073EA;
 }
 
 .label {
@@ -68,14 +100,26 @@
   font-size: 25px;
   font-weight: bold;
   position: absolute;
-  left: 16px;
+  left: 17px;
   top: 11px;
+}
+
+.badge-number-1 {
+ left: 18px!important;
+}
+
+.badge-ordinal-1 {
+ right: 12px!important;
+}
+
+.badge-number-2 {
+ left: 15px!important;
 }
 
 .badge .ordinal {
   position: absolute;
   font-size: 10px;
-  right: 8px;
+  right: 9px;
   top: 8px;
 }
 

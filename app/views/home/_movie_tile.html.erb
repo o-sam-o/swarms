@@ -1,8 +1,12 @@
 <div class="movie-tile">
-	<%= link_to movie_tile.images.small.blank? ? image_tag('no_preview.jpg', :alt => "No preview") : image_tag(movie_tile.images.small.file_name, 
-		:alt => movie_tile.display_name), movie_tile %>
+  <%= link_to movie_tile.images.small.blank? ? image_tag('no_preview.jpg', :alt => "No preview", :class => 'poster-thumbnail') : 
+    image_tag(movie_tile.images.small.file_name, :alt => movie_tile.display_name, :class => 'poster-thumbnail'), 
+    movie_tile %>
 	
 	<h6><%= movie_tile.display_name %></h6> 
-	<div class="movie-badges">[<%= movie_tile.torrents.latest_seeds_count %> / <%= movie_tile.torrents.latest_leaches_count %>]</div>
-  <%= render :partial => '/shared/watch_trailer', :locals => {:movie_title => movie_tile.name, :link_text => image_tag('youtube_icon.png')} %>
-</div>	
+	<div class="movie-badges">
+    <%= render :partial => '/shared/watch_trailer', 
+      :locals => {:movie_title => movie_tile.name, :link_text => 
+      image_tag('youtube_icon.png', :alt => 'Watch Trailer', :class => 'trailer-badge')} %>
+  </div>
+</div>
