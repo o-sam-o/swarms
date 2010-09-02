@@ -136,7 +136,8 @@
   <table id="movie-summary-table" class="rounded-table">
     <tbody>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Director', :data => @movie.director} %>
-      <%= render :partial => "optional_row", :locals => {:data_label => 'Runtime', :data => runtime_span(@movie.runtime)} %>
+      <%= render :partial => "optional_row", :locals => {:data_label => 'Runtime', 
+            :data => runtime_span(@movie.runtime), :raw_data => true} %>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Release Date', 
             :data => @movie.release_date? ? @movie.release_date.strftime('%d %B %Y') : ''} %>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Classification', :data => @movie.classification} %>

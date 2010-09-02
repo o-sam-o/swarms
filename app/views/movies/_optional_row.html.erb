@@ -1,7 +1,13 @@
 <% unless data.blank? %>
   <tr>
     <td><%= data_label %></td>
-    <td><%= data %></td>
+    <td>
+      <% if (raw_data rescue false) %>
+        <%= raw data %>
+      <% else %>
+        <%= data %> 
+      <% end %>
+    </td>
   </tr>
 <% end %>
 

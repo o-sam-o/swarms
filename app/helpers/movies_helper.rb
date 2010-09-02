@@ -25,7 +25,7 @@ module MoviesHelper
   end  
 
   def runtime_span(runtime)
-    %Q{<span class="tooltip" title="#{runtime / 60} hrs #{runtime % 60} mins">#{runtime} mins</span>} unless runtime.blank?
+    %Q{<span class="tooltip" title="#{runtime} mins">#{runtime / 60}h #{runtime % 60}m</span>} unless runtime.blank?
   end
 
 end  
