@@ -37,7 +37,7 @@ $(function() {
         $('#download-dialog-form input').removeClass('ui-state-error');
 
         if (checkPresents($("#url"), "url")) {
-        $.cookie('custom_download_link', $("#url").val(), { expires: 1000});
+        $.cookie('custom_download_link', $("#url").val(), { path: '/', expires: 1000});
           setCustomLinks($("#url").val());
           //Dialog no longer needed
           $('.download-link').unbind('click');

@@ -17,16 +17,22 @@
   margin-bottom: 3px;
 }
 
+.download-badge {
+  vertical-align: middle;
+  margin-bottom: 4px;
+}
+
 .movie-badges .action-link {
   padding: 5px 5px!important;
 }
 
 .movie-tile {
   float: left;
-  padding: 5px;
+  margin: 5px 5px 10px 5px;
   width: 110px;
   height: 200px;
   position: relative;
+  text-align: center;
 }
 
 .movie-badges {

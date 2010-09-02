@@ -7,6 +7,9 @@
 	<div class="movie-badges">
     <%= render :partial => '/shared/watch_trailer', 
       :locals => {:movie_title => movie_tile.name, :link_text => 
-      image_tag('youtube_icon.png', :alt => 'Watch Trailer', :class => 'trailer-badge')} %>
+        image_tag('youtube_icon.png', :alt => 'Watch Trailer', :class => 'trailer-badge')} %>
+
+    <a href="#" class="action-link download-link" movieTitle="<%= movie_tile.name %>">
+       <%= image_tag 'download_icon.png', :alt => 'Download', :class => 'download-badge' %></a>
   </div>
 </div>
