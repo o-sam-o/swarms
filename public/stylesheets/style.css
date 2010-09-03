@@ -25,6 +25,11 @@
   margin-bottom: 4px;
 }
 
+.imdb-badge {
+  vertical-align: middle;
+  margin-bottom: 4px;
+}
+
 .movie-badges .action-link {
   padding: 5px 5px!important;
 }
@@ -41,12 +46,13 @@
 .movie-badges {
   position: absolute;
   bottom: 5px;
+  left: 8px;
 }
 
 .movie-tile h6 {
   line-height: 13px;
   text-align: center;
-  width: 100px;
+  padding: 0px 5px 0px 5px;
 }
 
 .poster-thumbnail {
