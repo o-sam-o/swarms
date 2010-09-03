@@ -10,6 +10,9 @@
   color: white;
   padding: 0px 3px;
   font-size: 12px;
+  -moz-box-shadow: 0px 0px 4px #BBBABA;
+  -webkit-box-shadow: 4px 3px 3px #BBBABA;
+  box-shadow: 0px 0px 4px #BBBABA;
 }
 
 .trailer-badge {
@@ -30,7 +33,7 @@
   float: left;
   margin: 5px 5px 10px 5px;
   width: 110px;
-  height: 200px;
+  height: 206px;
   position: relative;
   text-align: center;
 }
@@ -68,7 +71,7 @@
 
 #rank-label {
   float: left;
-  padding-top: 8px;
+  padding-top: 11px;
 }
 
 #rank-badge {
@@ -83,14 +86,14 @@
 
 #popularity-score {
   float: left;
-  padding-top: 8px;
+  padding-top: 11px;
   padding-left: 20px;
 }
 
 .popularity-score-trend {
   display: block;
   float: left;
-  padding-top: 8px;
+  padding-top: 11px;
   padding-left: 5px;
 }
 
@@ -196,6 +199,7 @@
  margin: 10px 0 10px 0;
  font-size: 12px;  
  background: white;
+ width: 265px;
  -moz-box-shadow: 0px 0px 7px black;
  -webkit-box-shadow: 0px 0px 7px black;   
  box-shadow: 0px 0px 7px black; 
