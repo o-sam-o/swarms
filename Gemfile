@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.0.0.rc2'
+gem 'rails', '~> 3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,7 +12,7 @@ gem 'toname', :require => 'to_name'
 
 gem 'imagesize', :require => 'image_size'
 
-gem 'will_paginate', '>= 3.0.pre2'
+gem 'will_paginate', '~> 3.0.pre2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -30,16 +30,16 @@ gem 'will_paginate', '>= 3.0.pre2'
 # gem 'aws-s3', :require => 'aws/s3'
 
 group :development do
-	gem "rspec-rails", ">= 2.0.0.beta.17"
-  gem "mongrel", ">= 1.2.0.pre2"	
+	gem "rspec-rails", "~> 2.0.0.beta.17"
+  gem "mongrel", "~> 1.2.0.pre2"	
 end
 
 group :test do
-	gem "rspec-rails", ">= 2.0.0.beta.17"
+	gem "rspec-rails", "~> 2.0.0.beta.17"
 end
 
 group :production do
-	gem "mysql"
+	gem "mysql2"
 end
 
 # Bundle gems for certain environments:
