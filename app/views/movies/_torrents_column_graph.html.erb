@@ -3,32 +3,42 @@
 <!-- 2. Add the JavaScript to initialize the chart on document ready --> 
 <script type="text/javascript"> 
 	$(document).ready(function() {
-		var torrentNames = {<%= movie.torrents.collect { |t| "'#{t.name.first(20)}' : '#{t.name}'" }.join(', ') %>}		
-		var chart = new Highcharts.Chart({
+    var torrentInfo = <%=raw torrent_info_json(movie) %>  
+    var chart = new Highcharts.Chart({
 			chart: {
 				renderTo: 'current-torrents-graph',
+        marginBottom: 30,
 				borderRadius: 15,		
 				defaultSeriesType: 'column'
 			},
 			title: {
 				text: 'Latest Torrents'
 			},
-			xAxis: {
-				categories: [<%= movie.torrents.collect { |t| "'#{t.name.first(20)}'" }.join(', ') %>]
+      xAxis: {
 			},
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Swarm'
+          text: "Swarm Size <%= scale_label movie %>"
 				}
 			},
 			tooltip: {
 				formatter: function() {
-					return '<b>'+ torrentNames[this.x] +'</b><br/>'+
-						 this.series.name +': '+ this.y +'<br/>'+
-						 'Total: '+ this.point.stackTotal;
+					return '<b>'+ torrentInfo[this.x]['name'] +'</b><br/>'+
+            'First Seen: ' + torrentInfo[this.x]['created_at'] + '<br/>' + 
+            this.series.name +': '+ Highcharts.numberFormat(this.y * <%= scale_rate movie %>, 0, ',') +'<br/>'+
+						'Total: '+ Highcharts.numberFormat(this.point.stackTotal * <%= scale_rate movie %>, 0 , ',');
 				}
-			},
+      },
+      legend: {
+         layout: 'vertical',
+         align: 'left',
+         verticalAlign: 'top',
+         x: 90,
+         y: 70,
+         borderWidth: 1,
+         backgroundColor: '#505050'
+      },
 			plotOptions: {
 				column: {
 					stacking: 'normal'
@@ -36,10 +46,10 @@
 			},
 		  series: [{
 				name: 'Leaches',
-				data: <%= movie.torrents.collect { |t| t.stats.latest.leaches }.to_json %>
+				data: <%= movie.torrents.collect { |t| t.stats.latest.leaches / scale_rate(movie) }.to_json %>
 			},{
 				name: 'Seeds',
-				data: <%= movie.torrents.collect { |t| t.stats.latest.seeds }.to_json %>
+				data: <%= movie.torrents.collect { |t| t.stats.latest.seeds / scale_rate(movie) }.to_json %>
 			}]
 		});
 		

@@ -1,31 +1,26 @@
-<div id="movie-stats-graph" style="width: 580px; height: 300px; margin: 0 auto"></div>
-
 <script type="text/javascript"> 
-
-	var chart;
 	$(document).ready(function() {
-		chart = new Highcharts.Chart({
+		var chart = new Highcharts.Chart({
 			chart: {
 				renderTo: 'movie-stats-graph',
 				defaultSeriesType: 'area',
-				marginRight: 20,
-				
-				borderRadius: 15
+        marginRight: 30,
+        marginLeft: 70,
+        marginBottom: 50,
+        borderRadius: 15
 			},
 			title: {
-				text: 'Movie Popularity',
-				x: -20 //center
+				text: 'Movie Popularity'
 			},
 			subtitle: {
-				text: 'Swarm size overtime',
-				x: -20
+				text: 'Swarm size overtime'
 			},
 			xAxis: {
-				categories: [<%= movie.movie_stats.order(:day).collect { |s| "'#{s.day.strftime('%d %b %y')}'" }.join(', ') %>]
+				type: 'datetime'
 			},
 			yAxis: {
 				title: {
-					text: 'Size'
+          text: "Swarm Size <%= scale_label movie %>"
 				},
 				plotLines: [{
 					value: 0,
@@ -35,10 +30,19 @@
 			},
 			tooltip: {
 				formatter: function() {
-		                return '<b>'+ this.series.name +'</b><br/>'+
-						this.x +': '+ this.y;
+          return '<b>' + this.series.name +'</b><br/>' +	Highcharts.dateFormat('%e %b %Y', this.x) + 
+            ' : ' + Highcharts.numberFormat((this.y * <%= scale_rate movie %>), 0, ',');
 				}
-			},
+      },
+      legend: {
+         layout: 'vertical',
+         align: 'left',
+         verticalAlign: 'top',
+         x: 90,
+         y: 70,
+         borderWidth: 1,
+         backgroundColor: '#505050'
+      },
 			plotOptions: {
 				area: {
 					stacking: 'normal',
@@ -51,15 +55,17 @@
 				}
 			},			
 			series: [{
-				name: 'Leaches',
-				data: <%= movie.movie_stats.order(:day).collect { |s| s.leaches }.to_json %>
+       name: 'Leaches',
+       pointInterval: 24 * 3600 * 1000,
+       pointStart: <%= start_point_date(movie) %>,
+			 data: <%= data_points(movie, :leaches) %>
 			}, {
-				name: 'Seeds',
-				data: <%= movie.movie_stats.order(:day).collect { |s| s.seeds }.to_json %>
+       name: 'Seeds',
+       pointInterval: 24 * 3600 * 1000,
+       pointStart: <%= start_point_date(movie) %>,
+			 data: <%= data_points(movie, :seeds)  %>
 			}]
 		});
-		
-		
 	});
 		
 </script>
