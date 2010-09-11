@@ -43,5 +43,8 @@ module Swarm
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+     # Change JS defaults to be jquery
+     config.action_view.javascript_expansions[:defaults] = %w(jquery-1.4.2.min rails application)
   end
 end

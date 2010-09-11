@@ -5,6 +5,8 @@ class HomeController < ApplicationController
                    .where('current_rank != 0')
                    .order('current_rank')
                    .paginate(:page => params[:page], :per_page => 15)
+
+    @featured_movie = Movie.where('current_rank != 0').order('current_rank').first
   end
 
 end

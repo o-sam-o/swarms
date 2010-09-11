@@ -1,0 +1,6 @@
+<div class="movie_tiles">
+  <%= render :partial => "movie_tile", :collection => @movies %>
+</div>
+<div class="movies_paginator">
+  <%= will_paginate @movies %>
+</div> 

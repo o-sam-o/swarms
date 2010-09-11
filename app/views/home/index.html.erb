@@ -16,26 +16,26 @@
 <script type="text/javascript" charset="utf-8"> 
   $(document).ready(function(){
       $("a[rel^='youtubeSearch']").youtubeSearch({showTitle:false});
+        // Make pagination ajax
+        $('.pagination a').attr('data-remote', 'true');
   });
 </script> 
 
 <% unless @movies.blank? %>
-	<div class="movie_tiles">
-		<%= render :partial => "movie_tile", :collection => @movies %>
-	</div>
-	<div class="movies_paginator">
-		<%= will_paginate @movies %>
-	</div>
+  <div id='search-results'>
+    <%= render :partial => "search_results" %>
+  </div>
 <% else %>
-	No movies.
+  No movies.
 <% end %>
 
 <%= render :partial => '/shared/download_link_dialog' %>
 
 <% content_for :sidebar_title do %>
-  Recent Additions
+  <%= @featured_movie.display_name %>
 <% end %>
 
 <% content_for :sidebar do %>
-  Recent movies to go here
+  <div id="movie-stats-graph" style="width: 250px; height: 60px; margin: 0 auto"></div>
+  <%= render :partial => "/movies/movie_stats_graph", :locals => {:movie => @featured_movie} %>
 <% end %>
