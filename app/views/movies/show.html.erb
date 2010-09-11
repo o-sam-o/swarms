@@ -95,16 +95,20 @@
       <div class="side-title-text">TRACK</div>
     </div>
     <div class="entry">
-      <% unless @movie.torrents.empty? || @movie.movie_stats.empty? %>
+      <% unless @movie.torrents.empty? %>
         <div id="graph-tabs">
           <ul>
-            <li><a href="#historic-graph">Historic</a></li>
+            <% unless  @movie.movie_stats.empty? %>
+              <li><a href="#historic-graph">Historic</a></li>
+            <% end %>
             <li><a href="#torrents-graph">Torrents</a></li>
           </ul>  
-          <div id="historic-graph">
-            <div id="movie-stats-graph" style="width: 580px; height: 300px; margin: 0 auto"></div>
-            <%= render :partial => "movie_stats_graph", :locals => {:movie => @movie} %>
-          </div>
+          <% unless  @movie.movie_stats.empty? %>
+            <div id="historic-graph">
+              <div id="movie-stats-graph" style="width: 580px; height: 300px; margin: 0 auto"></div>
+              <%= render :partial => "movie_stats_graph", :locals => {:movie => @movie} %>
+            </div>
+          <% end %>
           <div id="torrents-graph"> 
             <%= render :partial => "torrents_column_graph", :locals => {:movie => @movie} %>
           </div> 
@@ -115,7 +119,7 @@
             });
         </script>
       <% else %>
-	      No torrent stats.
+        <div class="no-stats-message">No torrent stats.</div>
       <% end %>
     </div>
   </div>

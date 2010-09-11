@@ -169,6 +169,12 @@
   font-weight: bold;
 }
 
+.no-stats-message {
+  min-height: 50px;
+  font-style: italic;
+  padding-top: 12px;
+}
+
 .validate-tips {
   color: red;
 }

@@ -15,6 +15,8 @@
 				text: 'Latest Torrents'
 			},
       xAxis: {
+      allowDecimals: false,
+      categories: <%= (1..movie.torrents.count).to_a.to_json %>
 			},
 			yAxis: {
 				min: 0,
@@ -24,8 +26,8 @@
 			},
 			tooltip: {
 				formatter: function() {
-					return '<b>'+ torrentInfo[this.x]['name'] +'</b><br/>'+
-            'First Seen: ' + torrentInfo[this.x]['created_at'] + '<br/>' + 
+					return '<b>'+ torrentInfo[this.x - 1]['name'] +'</b><br/>'+
+            'First Seen: ' + torrentInfo[this.x - 1]['created_at'] + '<br/>' + 
             this.series.name +': '+ Highcharts.numberFormat(this.y * <%= scale_rate movie %>, 0, ',') +'<br/>'+
 						'Total: '+ Highcharts.numberFormat(this.point.stackTotal * <%= scale_rate movie %>, 0 , ',');
 				}
