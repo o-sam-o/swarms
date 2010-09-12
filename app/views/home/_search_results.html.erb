@@ -1,5 +1,7 @@
-<div class="movie_tiles">
-  <%= render :partial => "movie_tile", :collection => @movies %>
+<div class="post clear">
+  <div class="movie_tiles">
+    <%= render :partial => "movie_tile", :collection => @movies %>
+  </div>
 </div>
 <div class="movies_paginator">
   <%= will_paginate @movies %>

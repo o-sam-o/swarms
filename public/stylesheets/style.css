@@ -65,6 +65,7 @@
   -moz-box-shadow: 0px 0px 14px #0073EA;
   -webkit-box-shadow: 0px 0px 14px #0073EA;
   box-shadow: 0px 0px 14px #0073EA;
+  -webkit-transform: rotate(-2deg);  
 }
 
 .label {
