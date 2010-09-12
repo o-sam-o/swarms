@@ -49,10 +49,12 @@
   left: 8px;
 }
 
-.movie-tile h6 {
+.movie-title-link {
   line-height: 13px;
   text-align: center;
   padding: 0px 5px 0px 5px;
+  color: black!important;
+  display: block;
 }
 
 .poster-thumbnail {
@@ -65,7 +67,6 @@
   -moz-box-shadow: 0px 0px 14px #0073EA;
   -webkit-box-shadow: 0px 0px 14px #0073EA;
   box-shadow: 0px 0px 14px #0073EA;
-  -webkit-transform: rotate(-2deg);  
 }
 
 .label {

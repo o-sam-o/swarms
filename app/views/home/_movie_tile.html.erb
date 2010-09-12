@@ -3,14 +3,14 @@
     image_tag(movie_tile.images.small.file_name, :alt => movie_tile.display_name, :class => 'poster-thumbnail'), 
     movie_tile %>
 	
-    <h6>
+    <a href="<%= movie_path(movie_tile) %>" class="movie-title-link">
       <% if movie_tile.display_name.length <= 29 %>
         <%= movie_tile.display_name %>
       <% else %>
         <span class="tooltip" title="<%= movie_tile.name %>"><%= movie_tile.name[0..22] %> ...</span>
         (<%= movie_tile.year %>)
       <% end %>
-    </h6> 
+    </a> 
 	<div class="movie-badges">
     <%= render :partial => '/shared/watch_trailer', 
       :locals => {:movie_title => movie_tile.name, :link_text => 

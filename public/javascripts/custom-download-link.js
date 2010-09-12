@@ -19,14 +19,6 @@ $(function() {
     }
   }
 
-  function setCustomLinks(customLink){
-    $('.download-link').each(function(){
-        var link = $(this);
-        link.attr("href", customLink.replace('%TITLE%', escape(link.attr('movieTitle'))));
-        link.attr('target', '_blank');
-    });
-  }
-
   $("#download-dialog-form").dialog({
     autoOpen: false,
     height: 350,
@@ -38,7 +30,7 @@ $(function() {
 
         if (checkPresents($("#url"), "url")) {
         $.cookie('custom_download_link', $("#url").val(), { path: '/', expires: 1000});
-          setCustomLinks($("#url").val());
+          setCustomLinks();
           //Dialog no longer needed
           $('.download-link').unbind('click');
           $(this).dialog('close');
@@ -56,7 +48,7 @@ $(function() {
   
   //Setup what action a custom link performs when clicked	
   if ($.cookie('custom_download_link')){
-    setCustomLinks($.cookie('custom_download_link'));   
+    setCustomLinks();   
   }else {
     $('.download-link').click(function(){
       $('#download-dialog-form').dialog('open');
@@ -71,4 +63,12 @@ $(function() {
   });
 
 });
+
+function setCustomLinks(){
+  $('.download-link').each(function(){
+    var link = $(this);
+    link.attr("href", $.cookie('custom_download_link').replace('%TITLE%', escape(link.attr('movieTitle'))));
+    link.attr('target', '_blank');
+  });
+}
 
