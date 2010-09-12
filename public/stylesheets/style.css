@@ -231,23 +231,35 @@
   padding-right: 5px;
 }
 
-#movie-summary-table tr:nth-child(odd) {
-  background: #E7E9EB;
-}
-
-#movie-summary-table tr:nth-child(even) {
-  background: white;
-}
-
 #movie-summary-table tr:hover {
   background: #0073EA;
   color: white;
+}
+
+#recently-added-table {
+ font-size: 12px;
+ background: white;
+ -moz-box-shadow: 0px 0px 7px black;
+ -webkit-box-shadow: 0px 0px 7px black;   
+ box-shadow: 0px 0px 7px black; 
+}
+
+#recently-added-table td {
+ padding: 5px;
 }
 
 .rounded-table {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;  
+}
+
+.rounded-table tr:nth-child(odd) {
+  background: #E7E9EB;
+}
+
+.rounded-table tr:nth-child(even) {
+  background: white;
 }
 
 .rounded-table tr:first-child td:first-child {

@@ -32,10 +32,31 @@
 <%= render :partial => '/shared/download_link_dialog' %>
 
 <% content_for :sidebar_title do %>
-  <%= @featured_movie.display_name %>
+  More Info
 <% end %>
 
 <% content_for :sidebar do %>
-  <div id="movie-stats-graph" style="width: 250px; height: 60px; margin: 0 auto"></div>
-  <%= render :partial => "/movies/movie_stats_graph", :locals => {:movie => @featured_movie} %>
+  <div class="widget">
+    <h2 class="widgettitle">About Swarms</h2>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Proin eu lorem eu odio auctor consectetur varius quis est. 
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+    Proin varius erat at tortor ultricies mollis ac quis nunc. Vivamus rhoncus facilisis mauris, 
+    eu posuere est vulputate quis. Nunc eu enim ac nulla volutpat tempor at eget odio. 
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+  </div>
+  <div class="widget">
+    <h2 class="widgettitle">Recent Additions</h2>
+    <table id="recently-added-table" class="rounded-table">
+      <tbody>
+        <% @recent_additions.each do |movie| %>
+          <tr>
+            <td><%= link_to movie.display_name, movie_path(movie), 
+              :class => 'tooltip', :title => "Added #{movie.created_at.strftime('%d %B %Y')}" %>
+            </td>
+          </tr>
+        <% end %>  
+      </tbody>
+    </table>
+  </div>  
 <% end %>
