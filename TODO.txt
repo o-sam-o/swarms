@@ -10,6 +10,8 @@
 
 ---------------------- Post 0.1
 
+ * Url not updated on AJAX paginate
+
  * Google analytics
 
  * Improve home page animation
