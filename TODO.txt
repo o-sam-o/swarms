@@ -1,32 +1,29 @@
- * Finalise Movie show page
- * Add trailer
- * Style home page
-    * Homepage side bar
- * Fix graph when lots of data points
- * Javascript 'download' link
- * Youtube Trailer widget
+ * Fix scraping performance
 
- * Filter by genre
- * Search
- 
- * About page
- * Google analytics
+ * Homepage about text
 
- * Set title on movie show page
- 
- * Branding + Name
-
- * Clicking on poster on show page (Javascript zoom)
- * Change background shadow on hover on home page
- * No poster image (home + movie show page)
-
- * Javascript for paging home page
+ * Improve page footer
 
  * Cucumbers
 
- * Deploy to prod server 
+ * Deploy to dub
 
 ---------------------- Post 0.1
+
+ * Google analytics
+
+ * Improve home page animation
+
+ * Deploy to prod server 
+
+ * Filter by genre
+ * Search
+ * About page
+
+ * Branding + Name
+
+ * No poster image (home + movie show page)
+----- Post 0.2
 
  * Check if dvd is available
  * Badges + sparkle lines

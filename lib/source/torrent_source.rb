@@ -6,11 +6,14 @@ module Source
         
       source = Source::PirateBaySource.new
       result = source.refresh
-    
+      Rails.logger.info "PirateBay Scrap complete, took: #{Time.now - started_at}s"
+      scrap_time = Time.now
+
       Rails.logger.info "Updating movie swarm scores"
       Movie.find_each do |movie|
         movie.update_swarm_score(started_at)
       end
+      Rails.logger.info "Update swarm scores complete, took: #{Time.now - scrap_time}"
 
       rank = 1
       Movie.where('swarm_score != 0').order('swarm_score DESC').each do |movie|

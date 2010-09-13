@@ -10,6 +10,10 @@
   
 <% end %>
 
+<% content_for :title do %>
+  <%= @movie.display_name %> Popularity Statistics
+<% end %>
+
 <% content_for :main_title do %>
   <%= @movie.display_name %>
 <% end %>
