@@ -49,5 +49,19 @@ describe Source::TorrentSource do
     Source::TorrentSource.update
     movie.reload.current_rank.should be_nil
   end  
-  
+ 
+  it 'should set all torrent stats latest flags to false' do
+    torrent = Torrent.new(:name => 'test.torrent')
+    torrent.stub!(:associate_with_movie)
+    torrent.save!
+    torrent_stat = TorrentStat.create!(:torrent => torrent, :seeds => 1, :leaches => 1, :latest => true)
+
+    pb_source = mock(:pirate_bay_source).as_null_object
+    Source::PirateBaySource.stub!(:new).and_return(pb_source)
+    Movie.stub!(:find_each)
+
+    Source::TorrentSource.update
+
+    torrent_stat.reload.should_not be_latest
+  end
 end  

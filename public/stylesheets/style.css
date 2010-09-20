@@ -239,6 +239,7 @@
 #recently-added-table {
  font-size: 12px;
  background: white;
+ width: 265px;
  -moz-box-shadow: 0px 0px 7px black;
  -webkit-box-shadow: 0px 0px 7px black;   
  box-shadow: 0px 0px 7px black; 

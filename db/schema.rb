@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100913105145) do
+ActiveRecord::Schema.define(:version => 20100920115415) do
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -70,9 +70,13 @@ ActiveRecord::Schema.define(:version => 20100913105145) do
     t.integer  "torrent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "swarm_size"
+    t.boolean  "latest"
   end
 
   add_index "torrent_stats", ["created_at"], :name => "index_torrent_stats_on_created_at"
+  add_index "torrent_stats", ["latest"], :name => "index_torrent_stats_on_latest"
+  add_index "torrent_stats", ["torrent_id"], :name => "index_torrent_stats_on_torrent_id"
 
   create_table "torrents", :force => true do |t|
     t.string   "name"
@@ -81,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20100913105145) do
     t.datetime "updated_at"
   end
 
+  add_index "torrents", ["movie_id"], :name => "index_torrents_on_movie_id"
   add_index "torrents", ["name"], :name => "index_torrents_on_name"
 
 end

@@ -24,6 +24,10 @@ module Source
       # Remove rank for any movie that doesnt current have a score
       Movie.update_all "current_rank = null", "swarm_score = 0"
 
+      # Update latest torrent stats flag
+      TorrentStat.update_all({:latest => false}, ["created_at < ?", started_at])
+      TorrentStat.update_all({:latest => true}, ["created_at >= ?", started_at])
+
       Rails.logger.info "Finished in #{Time.now - started_at}s"
       return result
     end  

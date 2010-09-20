@@ -8,13 +8,13 @@ class Movie < ActiveRecord::Base
   has_many :torrents do
     def latest_swarm_count
       self.inject(0) { |result, torrent| result + torrent.stats.latest.swarm_size }
-    end  
+    end
     def latest_leaches_count
       self.inject(0) { |result, torrent| result + torrent.stats.latest.leaches }
-    end    
+    end
     def latest_seeds_count
       self.inject(0) { |result, torrent| result + torrent.stats.latest.seeds }
-    end    
+    end
   end  
   
   has_many :movie_images do
@@ -65,6 +65,12 @@ class Movie < ActiveRecord::Base
 
   def swarm_score_down?
     swarm_score? && previous_swarm_score? && swarm_score < previous_swarm_score
+  end  
+
+  def latest_torrent_stats
+    @latest_torrent_stats ||= TorrentStat.joins(:torrent)
+                                         .where('torrents.movie_id' => self.id, :latest => true)
+                                         .order('swarm_size')
   end  
 
   def update_swarm_score(after)

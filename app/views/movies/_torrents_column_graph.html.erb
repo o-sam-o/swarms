@@ -48,10 +48,10 @@
 			},
 		  series: [{
 				name: 'Leaches',
-				data: <%= movie.torrents.collect { |t| t.stats.latest.leaches / scale_rate(movie) }.to_json %>
+				data: <%= movie.latest_torrent_stats.collect { |ts| ts.leaches / scale_rate(movie) }.to_json %>
 			},{
 				name: 'Seeds',
-				data: <%= movie.torrents.collect { |t| t.stats.latest.seeds / scale_rate(movie) }.to_json %>
+				data: <%= movie.latest_torrent_stats.collect { |ts| ts.seeds / scale_rate(movie) }.to_json %>
 			}]
 		});
 		
