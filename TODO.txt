@@ -2,21 +2,21 @@
 
  * Improve page footer
 
- * Hide old torrent files
-
- * No poster image on show page
-
  * Location of graph legend
 
  * Cucumbers
 
  * Deploy to dub
 
+ * Improve pagination animation
+
+ * Url not updated on AJAX paginate
+
  * Swarm size graph looks bad when only 1 or 2 days of data
 
 ---------------------- Post 0.1
 
- * Url not updated on AJAX paginate
+ * Fix poster image sizes
 
  * Google analytics
 

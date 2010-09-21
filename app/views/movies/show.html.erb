@@ -139,6 +139,8 @@
       <a href="<%= image_path(@movie.images.poster.file_name) %>" rel="prettyPhoto">
         <%= image_tag @movie.images.poster.file_name, :alt => @movie.display_name, :class => 'poster' %>
       </a>
+    <% else %>
+      <%= image_tag 'poster_missing_large.jpg', :alt => 'Poster Missing', :class => 'poster', :width => 265, :height => 371 %>
 	  <% end %>
   </div>
 
