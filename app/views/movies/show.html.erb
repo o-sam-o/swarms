@@ -7,7 +7,6 @@
 	<%= javascript_include_tag 'custom-download-link' %>
   <%= javascript_include_tag 'jquery.prettyPhoto' %>
   <%= javascript_include_tag 'jquery.youtubeSearch' %>
-  
 <% end %>
 
 <% content_for :title do %>
@@ -157,7 +156,7 @@
         <tr>	
           <td>Genres</td>
           <td>
-            <%= @movie.genres.collect{|g| g.name}.join(', ') %>
+            <%= raw @movie.genres.collect{|genre| link_to(genre.name, genre_search_path(CGI.escape(genre.name.downcase)))}.join(', ') %>
           </td>		
         </tr>
       <% end %>

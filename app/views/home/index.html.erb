@@ -10,7 +10,11 @@
 <% end %>
 
 <% content_for :main_title do %>
-  Most Popular Movies
+  <% unless params[:genre].blank? %>
+    Popular <%= params[:genre].titleize %> Movies 
+  <% else %>
+    Most Popular Movies
+  <% end %>
 <% end %>
 
 <script type="text/javascript" charset="utf-8"> 

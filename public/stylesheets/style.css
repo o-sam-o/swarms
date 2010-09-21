@@ -352,6 +352,21 @@ a:hover.action-link {
 	background: #f3f5f7 url(../images/theme/feature-li-bg-hover.png) repeat-x bottom left;
 }
 
+.genres-list {
+  float: left;
+  width: 650px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.genres-list-item {
+  float: left;
+  width: 105px;
+  margin: 0;
+  padding: 0;
+}
+
 .comma-list li::before{
   content:", ";
   white-space:pre;

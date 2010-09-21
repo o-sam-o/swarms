@@ -12,6 +12,10 @@
 
  * Url not updated on AJAX paginate
 
+ * Add way to change custom dialog link
+
+ * Improve the message / style when there are no movies
+
  * Swarm size graph looks bad when only 1 or 2 days of data
 
 ---------------------- Post 0.1
@@ -27,8 +31,6 @@
  * About page
 
  * Branding + Name
-
- * Tooltip not working for movie name links
 
  * Add more sources for torrents
 
@@ -61,4 +63,13 @@
  * RSS feed (new movies?)
 
 Possible Badges:
-New Release, New Entry, Hot, Dvd, Not English, Trailer
+New Release, New Entry, Hot, Dvd, Not English, Trailer, Has Ranked 1st
+
+TODO Credits:
+
+No Poster Image Source: http://blog.artcore-illustrations.de/aicons/
+Favicon: http://www.gentleface.com/
+Highcharts
+PrettyPhoto
+Theme
+

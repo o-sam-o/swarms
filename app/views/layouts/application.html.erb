@@ -71,29 +71,24 @@
 
 <div id="footer"> 
 	<div class="wrapper clear"> 
-		<div id="footer-about" class="footer-column"> 
-			<h2>Categories</h2> 
-			<p>Todo add categories here</p> 
-		</div> 
-		<div id="footer-middle" class="footer-column"> 
-			<ul> 
-				<li class="widget"> 
-					<h2 class="widgettitle">Pages</h2> 
-					<ul> 
-						<li class="page_item page-item-2"><a href="#" title="About">About</a></li> 
-						<li class="page_item page-item-46"><a href="#" title="Parent Page">Parent Page</a> 
-						<ul class='children'> 
-								<li class="page_item page-item-49"><a href="#" title="Sub-page">Sub-page</a></li> 
-							</ul> 
-						</li> 
-					</ul> 
-				</li> 
-			</ul> 
-		</div> 
+    <div id="footer-genres" class="footer-column"> 
+      <ul> 
+        <li class="widget"> 
+        <h2>Genres</h2> 
+        <ul class="genres-list">
+          <% @genres.each do |genre| %>
+            <li class="page_item genres-list-item">
+              <%= link_to genre.name, genre_search_path(CGI.escape(genre.name.downcase)) %>
+            </li> 
+        <% end %>
+        </ul>
+        </li>
+      </ul>
+    </div> 
 		<div id="footer-search" class="footer-column"> 
 			<h2>Search</h2> 
 				<form method="get" id="search_form" action="#"> 
-					<input type="text"	name="s" id="s" class="search"/> 
+					<input type="search"	name="s" id="s" class="search"/> 
 					<input type="submit" id="searchsubmit" value="Search" /> 
 				</form> 
 		</div> 
