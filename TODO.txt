@@ -20,8 +20,6 @@
 
  * Google analytics
 
- * Improve home page animation
-
  * Deploy to prod server 
 
  * Filter by genre
@@ -32,8 +30,13 @@
 
  * Tooltip not working for movie name links
 
- * No poster image (home + movie show page)
+ * Add more sources for torrents
+
+ * README
+
 ----- Post 0.2
+
+ * Make home page less cluttered, hide icons and display on hover?
 
  * Check if dvd is available
  * Badges + sparkle lines
@@ -45,12 +48,13 @@
 
  * Add reason for spike to history graph (e.g. dvdrip released)
  
- * Plot seed to leach ratio
-
  * Replace YQL 
 
  * Graph seeds vs leaches
- * Add release dates to historic graphs
+
+ * Get swarm size myself rather than scrapping of web page
+
+* Add release dates to historic graphs
 
  * Allow different sort order on home page, e.g. latest first
  
