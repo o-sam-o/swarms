@@ -39,9 +39,9 @@
 		<div class="wrapper clear"> 
 			<div id="pg-nav"> 
 				<ul class="nav"> 
-					<li class="page_item current_page_item"><%= link_to "Home", root_path %></li> 
-					<li class="page_item page-item-2"><%= link_to "About", about_path %></li> 
-          <li class="page_item page-item-2"><a href="#" id="configure-download-link">Settings</a></li> 
+					<li class="page_item <%= 'current_page_item' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li> 
+          <li class="page_item"><a href="#" id="configure-download-link">Settings</a></li> 
+					<li class="page_item <%= 'current_page_item' if current_page?(about_path) %>"><%= link_to "About", about_path %></li> 
 				</ul> 
 			</div><!--end page-navigation--> 
 		</div><!--end wrapper--> 

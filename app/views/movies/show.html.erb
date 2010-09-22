@@ -61,14 +61,14 @@
         <div id="rank-na">NA</div>
       <% end %>
       <div id="popularity-score">
-        <strong>Swarm Size:</strong> <%= @movie.swarm_score %>
+        <strong>Swarm Size:</strong> <%= number_with_delimiter @movie.swarm_score %>
       </div>
       <% if @movie.swarm_score_up? %>
         <%= image_tag 'up.png', :alt => 'Up', :class => 'popularity-score-trend tooltip', 
-            :title => "Up from #{@movie.previous_swarm_score}" %>
+            :title => "Up from #{ number_with_delimiter @movie.previous_swarm_score}" %>
       <% elsif @movie.swarm_score_down? %>
         <%= image_tag 'down.png', :alt => 'Down', :class => 'popularity-score-trend tooltip',
-            :title => "Down from #{@movie.previous_swarm_score}" %>
+            :title => "Down from #{number_with_delimiter @movie.previous_swarm_score}" %>
       <% end %>
     </div>
   </div>

@@ -15,14 +15,24 @@
   box-shadow: 0px 0px 4px #BBBABA;
 }
 
-#about-swarms {
+.about-swarms {
   font-size: 11px;
   text-align: justify;
+  padding-bottom: 5px;
 }
 
-#about-swarms strong {
-  font-size: 14px;
+.about-swarms strong {
+  font-size: 13px;
   font-weight: bold;
+}
+
+.about-page-text {
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+
+.rails-logo {
+  padding-left: 30px;
 }
 
 .trailer-badge {
