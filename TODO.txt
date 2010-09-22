@@ -20,6 +20,10 @@
 
 ---------------------- Post 0.1
 
+ * Movie show page looks bad when a movie doesnt have a rank
+ 
+ * Dont show torrent historic graph if only 1 data point
+
  * Fix poster image sizes
 
  * Google analytics

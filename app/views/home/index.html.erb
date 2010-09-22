@@ -1,16 +1,14 @@
 <% content_for :head do %>
 	<%= stylesheet_link_tag 'prettyPhoto' %>
 
-	<%= javascript_include_tag 'highcharts' %>
-	<%= javascript_include_tag 'highcharts.settings' %>
-	<%= javascript_include_tag 'jquery.cookie' %>
-	<%= javascript_include_tag 'custom-download-link' %>
   <%= javascript_include_tag 'jquery.prettyPhoto' %>
   <%= javascript_include_tag 'jquery.youtubeSearch' %> 
 <% end %>
 
 <% content_for :main_title do %>
-  <% unless params[:genre].blank? %>
+  <% if params[:q].present? %>
+    Search for '<%= params[:q] %>'
+  <% elsif params[:genre].present? %>
     Popular <%= params[:genre].titleize %> Movies 
   <% else %>
     Most Popular Movies
@@ -33,8 +31,6 @@
   No movies.
 <% end %>
 
-<%= render :partial => '/shared/download_link_dialog' %>
-
 <% content_for :sidebar_title do %>
   More Info
 <% end %>
@@ -42,12 +38,15 @@
 <% content_for :sidebar do %>
   <div class="widget">
     <h2 class="widgettitle">About Swarms</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Proin eu lorem eu odio auctor consectetur varius quis est. 
-    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-    Proin varius erat at tortor ultricies mollis ac quis nunc. Vivamus rhoncus facilisis mauris, 
-    eu posuere est vulputate quis. Nunc eu enim ac nulla volutpat tempor at eget odio. 
-    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
+    <p id="about-swarms">
+      <strong>Swarms</strong> is a new breed of torrent search engine that focus on a rich data user experience.   
+      Swarms caters to the activities of browsing and content discovery as apposed to 
+      boring tables of torrent file names.<br/>
+      <strong>We</strong> hook into the innately social nature bittorrent and tracks a movie 
+      popularity though the analysis of swarm sizes.  This means means new movies and rips graviate 
+      towards the front page.<br/>
+      <strong>We</strong> also provide descriptive movie bios, inline movie trailers and graphs of swarm sizes over time.
+    </p>
   </div>
   <div class="widget">
     <h2 class="widgettitle">Recent Additions</h2>

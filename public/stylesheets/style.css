@@ -15,6 +15,16 @@
   box-shadow: 0px 0px 4px #BBBABA;
 }
 
+#about-swarms {
+  font-size: 11px;
+  text-align: justify;
+}
+
+#about-swarms strong {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .trailer-badge {
   vertical-align: middle;
   margin-bottom: 3px;
@@ -348,6 +358,26 @@ a:link.action-link, a:visited.action-link {
 }
 
 a:hover.action-link {
+	border: 1px solid #c9c9c9;
+	background: #f3f5f7 url(../images/theme/feature-li-bg-hover.png) repeat-x bottom left;
+}
+
+.action-button {
+  padding-left: 20px;
+  padding-right: 20px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+	background: #eef0f2 url(../images/theme/feature-li-bg.png) repeat-x bottom left;
+	border: 1px solid #aaa;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+}
+
+#searchsubmit {
+  height: 20px;
+}
+
+.action-button:hover {
 	border: 1px solid #c9c9c9;
 	background: #f3f5f7 url(../images/theme/feature-li-bg-hover.png) repeat-x bottom left;
 }

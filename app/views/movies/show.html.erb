@@ -3,8 +3,7 @@
 
 	<%= javascript_include_tag 'highcharts' %>
 	<%= javascript_include_tag 'highcharts.settings' %>
-	<%= javascript_include_tag 'jquery.cookie' %>
-	<%= javascript_include_tag 'custom-download-link' %>
+  
   <%= javascript_include_tag 'jquery.prettyPhoto' %>
   <%= javascript_include_tag 'jquery.youtubeSearch' %>
 <% end %>
@@ -88,7 +87,6 @@
         <% end %>
         
         <a href="#" class="action-link download-link" movieTitle="<%= @movie.name %>">Download</a>
-        <%= render :partial => '/shared/download_link_dialog' %>
       </p>
     </div>
   </div>
@@ -108,7 +106,6 @@
           </ul>  
           <% unless  @movie.movie_stats.empty? %>
             <div id="historic-graph">
-              <div id="movie-stats-graph" style="width: 580px; height: 300px; margin: 0 auto"></div>
               <%= render :partial => "movie_stats_graph", :locals => {:movie => @movie} %>
             </div>
           <% end %>

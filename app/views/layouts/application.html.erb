@@ -11,7 +11,11 @@
 	<%= stylesheet_link_tag 'style' %>
 	<%= javascript_include_tag :defaults %>
 	<%= javascript_include_tag 'jquery.tooltip' %>
-	<%= javascript_include_tag 'jquery-ui-1.8.4.custom.min' %>
+  <%= javascript_include_tag 'jquery-ui-1.8.4.custom.min' %>
+
+  <%= javascript_include_tag 'jquery.cookie' %>
+	<%= javascript_include_tag 'custom-download-link' %>
+
 	<%= csrf_meta_tag %>
 
   <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
@@ -20,6 +24,10 @@
   <script type="text/javascript" charset="utf-8"> 
     $(document).ready(function(){
         $(".tooltip").simpletooltip();
+        $("#configure-download-link").click(function(){
+          openCustomLinkDialog();
+          return false;
+        });
     });
   </script> 
 
@@ -33,6 +41,7 @@
 				<ul class="nav"> 
 					<li class="page_item current_page_item"><%= link_to "Home", root_path %></li> 
 					<li class="page_item page-item-2"><%= link_to "About", about_path %></li> 
+          <li class="page_item page-item-2"><a href="#" id="configure-download-link">Settings</a></li> 
 				</ul> 
 			</div><!--end page-navigation--> 
 		</div><!--end wrapper--> 
@@ -87,10 +96,10 @@
     </div> 
 		<div id="footer-search" class="footer-column"> 
 			<h2>Search</h2> 
-				<form method="get" id="search_form" action="#"> 
-					<input type="search"	name="s" id="s" class="search"/> 
-					<input type="submit" id="searchsubmit" value="Search" /> 
-				</form> 
+        <%= form_tag(root_path, :method => :get, :id => 'search_form') do %>
+					<input type="search"	name="q" id="q" class="search"/> 
+					<input type="submit" id="searchsubmit" value="Search" class="action-button"/> 
+        <% end %> 
 		</div> 
 	</div><!--end wrapper--> 
 </div><!--end footer--> 
@@ -99,6 +108,8 @@
 	<p class="credit"><a href="http://thethemefoundry.com/traction/">Traction Theme</a> by <a href="http://thethemefoundry.com">The Theme Foundry</a></p> 
 	<p>Swarms | 0-0-1 | developed by <a href="mailto:cavenaghweb@hotmail.com">Sam Cavenagh</a></p> 
 </div><!--end copyright-->
+
+<%= render :partial => '/shared/download_link_dialog' %>
 
 </body>
 </html>

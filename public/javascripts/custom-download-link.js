@@ -51,7 +51,7 @@ $(function() {
     setCustomLinks();   
   }else {
     $('.download-link').click(function(){
-      $('#download-dialog-form').dialog('open');
+      openCustomLinkDialog();
       return false;
     });
   }
@@ -72,3 +72,8 @@ function setCustomLinks(){
   });
 }
 
+
+function openCustomLinkDialog(){
+  $('#url').val($.cookie('custom_download_link'));
+  $('#download-dialog-form').dialog('open');
+}
