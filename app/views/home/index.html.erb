@@ -3,6 +3,8 @@
 
   <%= javascript_include_tag 'jquery.prettyPhoto' %>
   <%= javascript_include_tag 'jquery.youtubeSearch' %> 
+  <%= javascript_include_tag 'jquery.bbq.1.2.1' %> 
+  <%= javascript_include_tag 'home' %> 
 <% end %>
 
 <% content_for :main_title do %>
@@ -14,14 +16,6 @@
     Most Popular Movies
   <% end %>
 <% end %>
-
-<script type="text/javascript" charset="utf-8"> 
-  $(document).ready(function(){
-      $("a[rel^='youtubeSearch']").youtubeSearch();
-      // Make pagination ajax
-      $('.pagination a').attr('data-remote', 'true');
-  });
-</script> 
 
 <% unless @movies.blank? %>
   <div id='search-results'>

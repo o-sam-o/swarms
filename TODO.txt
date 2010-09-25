@@ -1,6 +1,3 @@
- * Homepage about text
-
- * Improve page footer
 
  * Location of graph legend
 
@@ -11,8 +8,6 @@
  * Improve pagination animation
 
  * Url not updated on AJAX paginate
-
- * Add way to change custom dialog link
 
  * Improve the message / style when there are no movies
 
@@ -30,13 +25,11 @@
 
  * Deploy to prod server 
 
- * Filter by genre
- * Search
- * About page
-
- * Branding + Name
+ * Branding + Name, URL
 
  * Add more sources for torrents
+
+ * Refresh movie info from imdb
 
  * README
 
