@@ -20,12 +20,15 @@ function handlePaginationClick(e){
 
 function refreshPageWith(url){
   $.get(url,{},function(response){
-    var newSearchResults = $(response).find('#search-results');
-    $('#search-results').html(newSearchResults);
+    //$($(response).find('.movie_tiles li')).quicksand('.movie_tiles');
+    $('.movie_tiles').quicksand($(response).find('.movie_tiles li'), {easing: 'easeOutSine'}, function(){
+      // Handle JS Binds
+      $("a[rel^='youtubeSearch']").youtubeSearch();
+      setCustomLinks(); 
+      $(".tooltip").simpletooltip(); 
+    });
 
-    $("a[rel^='youtubeSearch']").youtubeSearch();
-    setCustomLinks(); 
-    $(".tooltip").simpletooltip(); 
+    $('.movies_paginator').html($(response).find('.movies_paginator'));
     $('.pagination a').click(handlePaginationClick);
 
     // Stash the page number in a hash so we can handle the back button

@@ -1,4 +1,4 @@
-<div class="movie-tile">
+<li class="movie-tile" data-id="<%= movie_tile.id %>">
   <%= link_to movie_tile.images.small.blank? ? image_tag('poster_missing_small.jpg', :alt => "Poster missing", :class => 'poster-thumbnail') : 
     image_tag(movie_tile.images.small.file_name, :alt => movie_tile.display_name, :class => 'poster-thumbnail'), 
     movie_tile %>
@@ -22,4 +22,4 @@
     <a href="http://www.imdb.com/title/tt<%= movie_tile.imdb_id %>" class="action-link">
        <%= image_tag 'imdb_icon.png', :alt => 'IMDB', :class => 'imdb-badge' %></a>
   </div>
-</div>
+</li>
