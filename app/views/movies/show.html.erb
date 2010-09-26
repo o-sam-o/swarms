@@ -133,7 +133,8 @@
   <div id="movie-show-sidebar">
     <% unless @movie.images.poster.blank? %>
       <a href="<%= image_path(@movie.images.poster.file_name) %>" rel="prettyPhoto">
-        <%= image_tag @movie.images.poster.file_name, :alt => @movie.display_name, :class => 'poster' %>
+        <%= image_tag @movie.images.poster.file_name, {:alt => @movie.display_name, :class => 'poster'}.merge( 
+          limit_image_size(:width => @movie.images.poster.width, :height => @movie.images.poster.height, :max_width => 265, :max_height => 500)) %>
       </a>
     <% else %>
       <%= image_tag 'poster_missing_large.jpg', :alt => 'Poster Missing', :class => 'poster', :width => 265, :height => 371 %>

@@ -28,4 +28,26 @@ module MoviesHelper
     %Q{<span class="tooltip" title="#{runtime} mins">#{runtime / 60}h #{runtime % 60}m</span>} unless runtime.blank?
   end
 
+  def limit_image_size(params)
+    return {} unless params[:width] && params[:height]
+    
+    width = params[:width]    
+    height = params[:height]
+
+    if width > params[:max_width]
+      ratio = Float(params[:max_width]) / Float(width)
+      width = params[:max_width]
+      height = Integer(height * ratio)
+    end
+    
+    if height > params[:max_height]
+      ratio = Float(params[:max_height]) / Float(height)
+      height = params[:max_height]
+      width = Integer(width * ratio)
+    end  
+    
+    return {:width => width, :height => height}
+  end  
+
+
 end  
