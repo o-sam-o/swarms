@@ -1,5 +1,6 @@
-<li class="movie-tile" data-id="<%= movie_tile.id %>">
-  <%= link_to movie_tile.images.small.blank? ? image_tag('poster_missing_small.jpg', :alt => "Poster missing", :class => 'poster-thumbnail', :width => 100, :height => 140) : 
+<li class="movie-tile movie-tile-row-<%= movie_tile_counter / 5 %>" data-id="<%= movie_tile.id %>">
+<div class="movie-tile-inner">
+<%= link_to movie_tile.images.small.blank? ? image_tag('poster_missing_small.jpg', :alt => "Poster missing", :class => 'poster-thumbnail', :width => 100, :height => 140) : 
     image_tag(movie_tile.images.small.file_name, :alt => movie_tile.display_name, :class => 'poster-thumbnail', 
               :width => movie_tile.images.small.width, :height => movie_tile.images.small.height), movie_tile %>
 	
@@ -22,4 +23,5 @@
     <a href="http://www.imdb.com/title/tt<%= movie_tile.imdb_id %>" class="action-link">
        <%= image_tag 'imdb_icon.png', :alt => 'IMDB', :class => 'imdb-badge', :height => 16, :width => 16 %></a>
   </div>
+</div>
 </li>

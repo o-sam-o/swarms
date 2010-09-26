@@ -1,33 +1,28 @@
 
  * Location of graph legend
 
+ * Disable animation of back button to home page
+
  * Cucumbers
 
  * Deploy to dub
 
  * Improve pagination animation
 
- * Url not updated on AJAX paginate
-
  * Improve the message / style when there are no movies
 
  * Swarm size graph looks bad when only 1 or 2 days of data
 
+ * Add more sources for torrents
 ---------------------- Post 0.1
 
- * Movie show page looks bad when a movie doesnt have a rank
- 
  * Dont show torrent historic graph if only 1 data point
-
- * Fix poster image sizes
 
  * Google analytics
 
  * Deploy to prod server 
 
  * Branding + Name, URL
-
- * Add more sources for torrents
 
  * Refresh movie info from imdb
 

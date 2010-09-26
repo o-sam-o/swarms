@@ -2,7 +2,7 @@ Swarm::Application.routes.draw do |map|
 
   root :to => "home#index"
   match 'about', :to => "home#about", :as => 'about'
-  match 'home/:genre', :to => "home#index", :as => 'genre_search'
+  match 'genre/:genre', :to => "home#index", :as => 'genre_search'
   
   resources :movies
 
