@@ -36,6 +36,15 @@ end
 
 group :test do
 	gem "rspec-rails", "~> 2.0.0.beta.17"
+
+  gem "rcov"
+
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'spork'
+  gem 'launchy'  
 end
 
 group :production do

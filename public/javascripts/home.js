@@ -45,11 +45,9 @@ function bindEventHandlers() {
   setCustomLinks(); 
   $(".tooltip").simpletooltip(); 
 
-  $('.movie-tile').mouseover(function(){
+  $('.movie-tile').hover(function(){
     $('.' + getRowClass(this)).addClass('movie-tile-row-mouseover')
-  });
-
-  $('.movie-tile').mouseout(function(){
+  }, function(){
     $('.' + getRowClass(this)).removeClass('movie-tile-row-mouseover')
   });
 
