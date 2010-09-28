@@ -1,4 +1,5 @@
-<li class="movie-tile movie-tile-row-<%= movie_tile_counter / 5 %>" data-id="<%= movie_tile.id %>">
+<li class="movie-tile movie-tile-row-<%= movie_tile_counter / 5 %> <%= 'first-tile' if movie_tile_counter % 5 == 0 %>" 
+    data-id="<%= movie_tile.id %>">
 <div class="movie-tile-inner">
 <%= link_to movie_tile.images.small.blank? ? image_tag('poster_missing_small.jpg', :alt => "Poster missing", :class => 'poster-thumbnail', :width => 100, :height => 140) : 
     image_tag(movie_tile.images.small.file_name, :alt => movie_tile.display_name, :class => 'poster-thumbnail', 

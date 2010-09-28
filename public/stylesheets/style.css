@@ -91,6 +91,10 @@
   opacity: 1;
 }
 
+.first-tile {
+  clear: left;
+}
+
 .movie-title-link {
   line-height: 13px;
   text-align: center;
