@@ -115,6 +115,10 @@
   box-shadow: 0px 0px 14px #0073EA;
 }
 
+.hidden {
+  display: none;
+}
+
 .label {
   font-weight: bold;
 }
@@ -308,13 +312,13 @@
   background: white;
 }
 
-.rounded-table tr:first-child td:first-child {
+.rounded-table tr:first-child td:first-child, th:first-child {
   -webkit-border-top-left-radius:5px;
   -moz-border-radius-topleft:5px;
   border-top-left-radius:5px;
 }
 
-.rounded-table tr:first-child td:last-child {
+.rounded-table tr:first-child td:last-child, th:last-child {
   -webkit-border-top-right-radius:5px;
   -moz-border-radius-topright:5px;
   border-top-right-radius:5px;
@@ -434,6 +438,36 @@ a:hover.action-link {
   width: 105px;
   margin: 0;
   padding: 0;
+}
+
+#verify-torrents-table {
+ margin: 10px 0 10px 0;
+ font-size: 12px;  
+ background: white;
+ -moz-box-shadow: 0px 0px 7px black;
+ -webkit-box-shadow: 0px 0px 7px black;   
+ box-shadow: 0px 0px 7px black; 
+}
+
+#verify-torrents-table th {
+  padding: 10px;
+  color: white;
+  background: url(http://localhost:3000/images/theme/wrap-glow.jpg) no-repeat 50% 0%;
+}
+
+#verify-torrents-table td {
+  padding: 6px;
+}
+
+#verify-torrents-table tr:hover td{
+  background: #0073EA;
+  color: white;
+  cursor:  pointer;
+}
+
+.torrent-name-contaner {
+  word-wrap: break-word; 
+  width: 400px;
 }
 
 .comma-list li::before{

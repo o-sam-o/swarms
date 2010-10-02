@@ -17,6 +17,10 @@ class Torrent < ActiveRecord::Base
     ToName.to_name(name)
   end  
   
+  def movie?
+    !movie.blank?
+  end
+
   private
     def associate_with_movie
       return unless movie.nil?

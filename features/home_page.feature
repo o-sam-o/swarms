@@ -9,7 +9,7 @@ Feature: Swarms Home Page
       | Top Gun       | 1986 | 6            |
       | Primer        | 2004 | 100          |
       | Avatar        | 2009 | 1            |
-      | Star Wars     | 1984 | 0            |
+      | Star Wars     | 1977 | 0            |
      When I am on the home page
      Then the 1st movie should be "Avatar (2009)"
      And the 2nd movie should be "Top Gun (1986)"
@@ -35,7 +35,7 @@ Feature: Swarms Home Page
       | Top Gun       | 1986 | 6            | action  |
       | Primer        | 2004 | 100          | sci-fi  |
       | Avatar        | 2009 | 1            | sci-fi  |
-      | Star Wars     | 1984 | 2            | sci-fi  |
+      | Star Wars     | 1977 | 2            | sci-fi  |
      When I am on the home page
      Then I should see "Top Gun" within ".movie_tiles"
      And I should see "Primer" within ".movie_tiles"
