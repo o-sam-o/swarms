@@ -17,6 +17,7 @@
 
  * Add more sources for torrents
 
+ * Fix data duplicates
 ---------------------- Post 0.1
 
  * Google analytics

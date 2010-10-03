@@ -19,8 +19,8 @@ class CustomPaginationLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
     end
 
     def html_container(html)
-      if container_attributes.has_key?(:class)
-       container_attributes[:class] << ' navigation index'
+      if container_attributes.has_key?(:class) && !(container_attributes[:class] =~ /navigation index(\s|$)/)
+        container_attributes[:class] << ' navigation index'
       else
        container_attributes[:class] = 'navigation index'
       end
