@@ -5,6 +5,12 @@ module GraphHelper
     "Date.UTC(#{date.year}, #{date.month}, #{date.day})"
   end  
 
+  def movie_stats_range(movie)
+    return 0 if movie.movie_stats.blank?
+
+    movie.movie_stats.order(:day).last.day - movie.movie_stats.order(:day).first.day
+  end  
+
   def scale_label(movie)
     "(#{scale_rate(movie).to_i}'s)" unless scale_rate(movie) == 1
   end

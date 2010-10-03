@@ -17,7 +17,11 @@
 				text: 'Swarm size overtime'
 			},
 			xAxis: {
-				type: 'datetime'
+      <% if movie_stats_range(movie) > 2 %>
+        type: 'datetime'
+      <% else %>
+        categories: <%=raw movie.movie_stats.order(:day).collect{ |m| m.day.strftime('%d %b %Y') }.to_json %>
+      <% end %>
 			},
 			yAxis: {
 				title: {
@@ -57,13 +61,17 @@
 			},			
 			series: [{
        name: 'Leaches',
-       pointInterval: 24 * 3600 * 1000,
-       pointStart: <%= start_point_date(movie) %>,
+       <% if movie_stats_range(movie) > 2 %>
+           pointInterval: 24 * 3600 * 1000,
+           pointStart: <%= start_point_date(movie) %>,
+      <% end %>
 			 data: <%= data_points(movie, :leaches) %>
 			}, {
        name: 'Seeds',
-       pointInterval: 24 * 3600 * 1000,
-       pointStart: <%= start_point_date(movie) %>,
+       <% if movie_stats_range(movie) > 2 %>
+          pointInterval: 24 * 3600 * 1000,
+          pointStart: <%= start_point_date(movie) %>,
+       <% end %>
 			 data: <%= data_points(movie, :seeds)  %>
 			}]
 		});
