@@ -29,7 +29,7 @@
     <%= render :partial => "search_results" %>
   </div>
 <% else %>
-  No movies.
+  <div id="no-movies-found">No movies found. Try <%= link_to 'the home page.', root_path %></div>
 <% end %>
 
 <% content_for :sidebar_title do %>

@@ -9,8 +9,6 @@
 
  * Improve pagination animation
 
- * Improve the message / style when there are no movies
-
  * Use a different scale for historic and torrents
 
  * Create a table listing all the torrent names for a movie, ideally clickable

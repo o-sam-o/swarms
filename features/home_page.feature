@@ -76,8 +76,3 @@ Feature: Swarms Home Page
     And I press "Search"
     Then I should be on the "Primer" movie page
 
-  @wip
-  Scenario: Youtube trailer
-
-  @wip
-  Scenario: Custom download link
