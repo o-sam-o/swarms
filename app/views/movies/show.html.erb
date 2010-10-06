@@ -6,6 +6,8 @@
   
   <%= javascript_include_tag 'jquery.prettyPhoto' %>
   <%= javascript_include_tag 'jquery.youtubeSearch' %>
+
+  <%= javascript_include_tag 'movies' %>
 <% end %>
 
 <% content_for :title do %>
@@ -15,23 +17,6 @@
 <% content_for :main_title do %>
   <%= @movie.display_name %>
 <% end %>
-
-<script type="text/javascript" charset="utf-8"> 
-  $(document).ready(function(){
-      $("a[rel^='youtubeSearch']").youtubeSearch();
-      $("a[rel^='prettyPhoto']").prettyPhoto({theme:'light_rounded'});
-
-      $(".navigation a").click(pageTorrents);
-    });
-
-  function pageTorrents(e){
-    e.preventDefault();
-    $.get($(this).attr("href"),{},function(response){
-        $("#all-torrents").html($(response).find('#all-torrents').html());
-        $(".navigation a").click(pageTorrents);
-    });
-  }
-</script> 
 
 <div id="show-movie">
   <div class="post">	
@@ -128,32 +113,9 @@
             </div> 
           <% end %>
           <div id="all-torrents">
-            <table id="all-torrents-table" class="rounded-table">
-              <thead>
-                <tr>
-                  <th>Torrent</th>
-                  <th>First Seen</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @torrents.each do |torrent| %>
-                  <tr>
-                    <td><div class="movie-show-torrent-name-contaner"><%= torrent.name %></div></td>
-                    <td><%= torrent.created_at.strftime('%d %b %Y') %>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-            <div id="torrent-pagination-container">
-              <%= will_paginate @torrents %>
-            </div>
+              <%= render :partial => "torrents_table", :locals => {:torrents => @torrents} %>
           </div>
         </div>
-        <script type="text/javascript">
-            $(function() {
-              $("#graph-tabs").tabs();
-            });
-        </script>
       <% else %>
         <div class="no-stats-message">No torrent stats.</div>
       <% end %>

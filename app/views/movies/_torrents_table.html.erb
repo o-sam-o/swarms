@@ -1,0 +1,20 @@
+<table id="all-torrents-table" class="rounded-table">
+  <thead>
+    <tr>
+      <th>Torrent</th>
+      <th>First Seen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% torrents.each do |torrent| %>
+      <tr>
+        <td><div class="movie-show-torrent-name-contaner"><%= torrent.name %></div></td>
+        <td><%= torrent.created_at.strftime('%d %b %Y') %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="torrent-pagination-container">
+   <%= will_paginate torrents %>
+ </div>
