@@ -450,6 +450,7 @@ a:hover.action-link {
 	border: 1px solid #aaa;
 	-moz-border-radius: 16px;
 	-webkit-border-radius: 16px;
+  min-height: 20px;
 }
 
 #searchsubmit {
@@ -507,6 +508,26 @@ a:hover.action-link {
   word-wrap: break-word; 
   width: 460px;
 }
+
+#torrent-verify-buttons {
+  padding: 5px;
+  height: 25px;
+  position: relative;
+  border-bottom: 1px solid #D5D7D8;
+}
+
+#select-all-checkboxes {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+#verify-torrents-button {
+  position: absolute;
+  right: 10px;
+  top 5px;
+}
+
 
 .comma-list li::before{
   content:", ";

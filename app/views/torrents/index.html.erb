@@ -4,38 +4,47 @@
 
 <% unless @torrents.blank? %>
   <%= form_tag(verify_torrents_path, :method => "put") do %>
-    <table id="verify-torrents-table" class="rounded-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Torrent</th>
-          <th>Movie</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @torrents.each do |torrent| %>
-          <tr>
-            <td>
-              <%= label_tag "verify_torrent_#{torrent.id}", "Verify #{torrent.name}", :class => 'hidden' %> 
-              <%= check_box_tag "verify[][verified]", "1", false, 
-                  {:id => "verify_torrent_#{torrent.id}"}.merge(torrent.movie? ? {} : {:disabled => true}) %>
-              <%= hidden_field_tag "verify[][torrent_id]", torrent.id, :id => "torrent_id_for_#{torrent.id}" %>
-              <%= hidden_field_tag "verify[][movie_id]", torrent.movie? ? torrent.movie.id : 0, 
-                    :id => "movie_id_for_#{torrent.id}" %>
-            </td>
-            <td><div class="torrent-name-contaner"><%= torrent.name %></div></td>
-            <td><%= torrent.movie.display_name if torrent.movie %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <input id="select-all-checkboxes" type="button" value="Select All" class="action-button" />
-    <%= submit_tag "Verify", :class => "action-button" %>
+    <div class="post" style="margin-bottom: 10px;">
+        <table id="verify-torrents-table" class="rounded-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Torrent</th>
+              <th>Movie</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @torrents.each do |torrent| %>
+              <tr>
+                <td>
+                  <%= label_tag "verify_torrent_#{torrent.id}", "Verify #{torrent.name}", :class => 'hidden' %> 
+                  <%= check_box_tag "verify[][verified]", "1", false, 
+                      {:id => "verify_torrent_#{torrent.id}"}.merge(torrent.movie? ? {} : {:disabled => true}) %>
+                  <%= hidden_field_tag "verify[][torrent_id]", torrent.id, :id => "torrent_id_for_#{torrent.id}" %>
+                  <%= hidden_field_tag "verify[][movie_id]", torrent.movie? ? torrent.movie.id : 0, 
+                        :id => "movie_id_for_#{torrent.id}" %>
+                </td>
+                <td><div class="torrent-name-contaner"><%= torrent.name %></div></td>
+                <td><%= link_to(torrent.movie.display_name, movie_path(torrent.movie)) if torrent.movie %></td>
+                <td>TODO</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div id="torrent-verify-buttons">
+        <input id="select-all-checkboxes" type="button" value="Select All" class="action-button" />
+        <%= submit_tag "Verify", :class => "action-button", :id => 'verify-torrents-button' %>
+      </div>
   <% end %>
-  <%= will_paginate @torrents %>
+
+  <%= will_paginate @torrents, :inner_window => 1, :outer_window => 1 %>
+
 <% else %>
   No un-verifed torrents.
 <% end %>
+
 <script>
   $(document).ready(function(){
     $('#verify-torrents-table td:nth-child(2), td:nth-child(3)').click(function(){
@@ -44,7 +53,7 @@
     });
 
     $('#select-all-checkboxes').click(function(){
-      $('input[type=checkbox]').attr('checked', true);
+      $('input[type=checkbox]:not(:disabled)').attr('checked', true);
     });
   });
 </script>
