@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
   validates_presence_of :name, :year
+  validates_uniqueness_of :name, :scope => :year, :case_sensitive => false
   validates_uniqueness_of :movie_code
   
   before_update :set_previous_score
@@ -108,10 +109,10 @@ private
   def self.convert_imdb_info_to_params(imdb_info, imdb_id)
     {
      :name => imdb_info[:title], :year => imdb_info[:year], :plot => imdb_info[:plot],
-     :director => imdb_info[:director], :language => imdb_info[:language], :classification => imdb_info[:mpaa],
+     :director => imdb_info[:director], :language => imdb_info[:language].blank? ? nil : imdb_info[:language].first, 
+     :classification => imdb_info[:mpaa], :release_date => imdb_info[:release_date],
      :genres => imdb_info[:genre].blank? ? [] : imdb_info[:genre].collect{|name| Genre.find_or_create_by_name(name)},
-     :runtime => imdb_info[:runtime], :release_date => imdb_info[:release_date],
-     :imdb_id => imdb_id
+     :runtime => imdb_info[:runtime], :imdb_id => imdb_id
     }
   end 
 

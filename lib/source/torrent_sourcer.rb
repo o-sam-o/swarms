@@ -25,7 +25,7 @@ module Source
     end
 
     def record_stats(torrent, seeds, leaches)
-      torrent = Torrent.find_or_create_by_name(torrent)
+      torrent = Torrent.find_or_create_by_name(torrent.strip)
       torrent.stats.create!(:seeds => seeds, :leaches => leaches)
     end
 

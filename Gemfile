@@ -30,12 +30,12 @@ gem 'will_paginate', '~> 3.0.pre2'
 # gem 'aws-s3', :require => 'aws/s3'
 
 group :development do
-	gem "rspec-rails", "~> 2.0.0.beta.17"
+	gem "rspec-rails", "~> 2.0.0"
   gem "mongrel", "~> 1.2.0.pre2"	
 end
 
 group :test do
-	gem "rspec-rails", "~> 2.0.0.beta.17"
+	gem "rspec-rails", "~> 2.0.0"
 
   gem "rcov"
 
