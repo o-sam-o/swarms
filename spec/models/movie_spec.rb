@@ -134,8 +134,9 @@ describe Movie do
   end 
 
  it 'should refresh from imdb' do
-    info = mock(:info)
+    info = mock(:info).as_null_object
     YayImdbs.should_receive(:scrap_movie_info).with('123').and_return(info)    
+    MovieImage.stub(:download_image)
     params = mock(:params)
     Movie.should_receive(:convert_imdb_info_to_params).with(info, '123').and_return(params)
     
@@ -192,11 +193,11 @@ describe Movie do
     end
 
     it 'should handle duplicate codes' do
-      m = Movie.create!(:name => 'Movie', :year => 2000)
-      m.movie_code.should == 'movie-2000'
+      m = Movie.create!(:name => 'Movie ', :year => 2000)
+      m.movie_code.should == 'movie--2000'
 
-      m2 = Movie.create!(:name => 'Movie', :year => 2000)
-      m2.movie_code.should == 'movie-2000-2'
+      m2 = Movie.create!(:name => 'Movie-', :year => 2000)
+      m2.movie_code.should == 'movie--2000-2'
     end  
 
     it 'should strip no ascii chars from a movie name' do
@@ -205,13 +206,13 @@ describe Movie do
     end  
 
     it 'should require the movie code to be unique' do
-      m = Movie.create!(:name => 'Movie', :year => 2000)
-      m.movie_code.should == 'movie-2000'
+      m = Movie.create!(:name => 'Movie-', :year => 2000)
+      m.movie_code.should == 'movie--2000'
 
-      m2 = Movie.create!(:name => 'Movie', :year => 2000)
-      m2.movie_code.should == 'movie-2000-2'
+      m2 = Movie.create!(:name => 'Movie ', :year => 2000)
+      m2.movie_code.should == 'movie--2000-2'
 
-      m2.movie_code = 'movie-2000'
+      m2.movie_code = 'movie--2000'
       m2.should_not be_valid
     end  
   end

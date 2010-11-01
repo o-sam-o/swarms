@@ -1,19 +1,21 @@
+ * README
 
- * Location of graph legend
+ * Put up on github
 
  * Disable animation of back button to home page
 
  * Cucumbers
 
+ * Nake Specs pass
+
  * Deploy to dub
 
  * Improve pagination animation
 
- * Use a different scale for historic and torrents
-
- * Create a table listing all the torrent names for a movie, ideally clickable
+ * Page for verifying torrent to movie match and find movies without a match
 
  * Add more sources for torrents
+  - http://www.kickasstorrents.com/movies/?q=&field=seeders&sorder=desc
 
  * Fix data duplicates
 ---------------------- Post 0.1
@@ -28,7 +30,9 @@
 
  * Page to verify and correct torrent to movie matching
 
- * README
+ * Location of graph legend
+
+ * Use a different scale for historic and torrents
 
 ----- Post 0.2
 
@@ -36,8 +40,6 @@
 
  * Check if dvd is available
  * Badges + sparkle lines
-
- * Page for verifying torrent to movie match and find movies without a match
 
  * Get torrent hash to avoid duplicates
  * Expire old torrents that we are no longer receiving stats for

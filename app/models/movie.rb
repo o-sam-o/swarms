@@ -29,7 +29,11 @@ class Movie < ActiveRecord::Base
   
   has_many :movie_stats
   has_and_belongs_to_many :genres
-  
+ 
+  scope :imageless, lambda { 
+    joins('left join movie_images on movie_images.movie_id = movies.id').where('movie_images.id is null')
+  } 
+
   def images
     movie_images
   end  
@@ -79,11 +83,16 @@ class Movie < ActiveRecord::Base
     update_attribute(:swarm_score, latest_stats.sum(:seeds) + latest_stats.sum(:leaches))
   end  
   
-  def refresh_from_imdb!
+  def refresh_from_imdb!(force_image_refresh=false)
     raise "Unable to refresh #{self.id} as no imdb id" if self.imdb_id.blank?
     
     imdb_info = YayImdbs.scrap_movie_info(self.imdb_id)
     self.update_attributes!(Movie.convert_imdb_info_to_params(imdb_info, self.imdb_id))
+
+    if force_image_refresh || images.empty?
+      MovieImage.download_image(imdb_info[:small_image], self, :small) if imdb_info[:small_image]
+      MovieImage.download_image(imdb_info[:large_image], self, :poster) if imdb_info[:large_image]
+    end
   end 
 
   def self.find_or_create_by_imdb_id(imdb_id)
@@ -109,7 +118,7 @@ private
   def self.convert_imdb_info_to_params(imdb_info, imdb_id)
     {
      :name => imdb_info[:title], :year => imdb_info[:year], :plot => imdb_info[:plot],
-     :director => imdb_info[:director], :language => imdb_info[:language].blank? ? nil : imdb_info[:language].first, 
+     :director => imdb_info[:director], :language => imdb_info[:language], 
      :classification => imdb_info[:mpaa], :release_date => imdb_info[:release_date],
      :genres => imdb_info[:genre].blank? ? [] : imdb_info[:genre].collect{|name| Genre.find_or_create_by_name(name)},
      :runtime => imdb_info[:runtime], :imdb_id => imdb_id
