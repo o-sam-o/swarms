@@ -1,4 +1,5 @@
  * README
+  - installation instructions
 
  * Put up on github
 
@@ -6,11 +7,14 @@
 
  * Cucumbers
 
- * Nake Specs pass
-
- * Deploy to dub
+ * Dub cron task for stats
 
  * Improve pagination animation
+
+ * Add pagination loading animation
+
+ * Add change page buttons to top of page
+   - Swarms logo animate? http://www.gayadesign.com/scripts/textmovingbg/
 
  * Page for verifying torrent to movie match and find movies without a match
 

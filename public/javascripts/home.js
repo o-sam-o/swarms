@@ -26,18 +26,39 @@ function handlePaginationClick(e){
 function refreshPageWith(url){
   // TODO add some kind of loading graphic
   $.get(url,{},function(response){
+    var currentPage = getSearchResultsPageNumber($('.movie_tiles'));
+    var newPage =  getSearchResultsPageNumber($(response).find('.movie_tiles'));
+
+    var transitionPosition = '-600px';
+    if (newPage > currentPage){
+      $('#movie-tiles-reel').append($(response).find('.movie_tiles'))
+    }else{
+      $("#movie-tiles-reel").css('left', '-600px');
+      transitionPosition = '0';
+      $('#movie-tiles-reel').prepend($(response).find('.movie_tiles'))
+    }
+
     //Animate pagination
-    $('.movie_tiles').quicksand($(response).find('.movie_tiles li'), {}, function(){
-      bindEventHandlers();
+    $("#movie-tiles-reel").animate({
+        left: transitionPosition
+    }, 1500, 'easeOutQuint', function() {
+      $('#movie-tiles-for-' + currentPage).remove();
+      $("#movie-tiles-reel").css('left', 0);
     });
 
     //Update paginator
     $('.movies_paginator').html($(response).find('.movies_paginator'));
 
+    bindEventHandlers();
+
     // Stash the page number in a hash so we can handle the back button
     params = $.deparam.querystring(url)
     $.bbq.pushState({ page: params.page }); 
   })
+}
+
+function getSearchResultsPageNumber(movieTiles){
+  return parseInt(movieTiles.attr('id').replace(/[^\d]/g, ''))
 }
 
 function bindEventHandlers() {
