@@ -4,6 +4,18 @@
   font-size: 40px!important;
 }
 
+#loading-indicator {
+  height: 21px;
+  width: 56px;
+  position: absolute;
+  top: 12px;
+  right: 315px;
+}
+
+.loading-indicator-active {
+  background-image: url(../images/loading.gif);
+}
+
 #simpleTooltip { 
   background: #272727;
   border: 8px solid #272727;

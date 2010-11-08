@@ -46,6 +46,7 @@ a:hover { color: #1a3d5c; }
 #main-top {
 	height: 54px;
 	background: #3c3c3d url(../images/theme/main-top.png) no-repeat center top;
+  position: relative;
 }
 #main { background: #e7e9eb url(../images/theme/main-body.png) repeat-y center top; }
 #main-bottom {

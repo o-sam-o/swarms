@@ -48,9 +48,10 @@ function refreshPageWith(url, params){
     $('#movie-tiles-container').append('<div class="loading-search-results"> Loading ... </div>');
   }
 
-  // TODO add some kind of loading graphic
+  $("#loading-indicator").addClass('loading-indicator-active');
   $.get(url,{},function(response){
     $('.loading-search-results').remove();
+    $("#loading-indicator").removeClass('loading-indicator-active');
    
     var currentPage = getCurrentPageNumber();
     var newPage =  getSearchResultsPageNumber($(response).find('.movie_tiles'));
