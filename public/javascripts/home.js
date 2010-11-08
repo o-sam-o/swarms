@@ -8,6 +8,26 @@ $(document).ready(function(){
   if (page && page != getCurrentPageNumber()){
     refreshPageWith('/?page=' + page, {'hideInitalPage' : true});
   }
+
+  //Add support for ipad swipes
+  $("#movie-tiles-container").touchwipe({
+    wipeLeft: function() { 
+      var currentPage = getCurrentPageNumber();
+      if(currentPage > 1){
+        refreshPageWith('/?page=' + (currentPage - 1));
+      }
+    },
+    wipeRight: function() { 
+      var currentPage = getCurrentPageNumber();
+      if(currentPage < getPagesCount()){
+        refreshPageWith('/?page=' + (currentPage + 1));
+      }
+    },
+    min_move_x: 20,
+    preventDefaultEvents: true
+  });
+
+
 });
 
 function getRowClass(element){
@@ -64,11 +84,15 @@ function refreshPageWith(url, params){
 }
 
 function getSearchResultsPageNumber(movieTiles){
-  return parseInt(movieTiles.attr('id').replace(/[^\d]/g, ''))
+  return parseInt(movieTiles.attr('id').replace(/[^\d]/g, ''));
 }
 
 function getCurrentPageNumber(){
   return getSearchResultsPageNumber($('.movie_tiles'));
+}
+
+function getPagesCount(){
+  return parseInt($('.page, .current')[$('.page, .current').length - 1].innerText);
 }
 
 function bindEventHandlers() {
