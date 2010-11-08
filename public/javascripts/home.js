@@ -5,9 +5,8 @@ $(document).ready(function(){
   // the back button, which means we need to reload the page
   // they where previously on
   var page = $.bbq.getState( "page" );
-  if (page){
-    // TODO disable animation for this
-    refreshPageWith('/?page=' + page);
+  if (page && page != getCurrentPageNumber()){
+    refreshPageWith('/?page=' + page, {'hideInitalPage' : true});
   }
 });
 
@@ -23,10 +22,17 @@ function handlePaginationClick(e){
   refreshPageWith($(this).attr("href"));
 }
 
-function refreshPageWith(url){
+function refreshPageWith(url, params){
+  if(params && params.hideInitalPage){
+    $("#movie-tiles-reel").css('left', '-600px');
+    $('#movie-tiles-container').append('<div class="loading-search-results"> Loading ... </div>');
+  }
+
   // TODO add some kind of loading graphic
   $.get(url,{},function(response){
-    var currentPage = getSearchResultsPageNumber($('.movie_tiles'));
+    $('.loading-search-results').remove();
+   
+    var currentPage = getCurrentPageNumber();
     var newPage =  getSearchResultsPageNumber($(response).find('.movie_tiles'));
 
     var transitionPosition = '-600px';
@@ -41,7 +47,7 @@ function refreshPageWith(url){
     //Animate pagination
     $("#movie-tiles-reel").animate({
         left: transitionPosition
-    }, 1500, 'easeOutQuint', function() {
+    }, 1500, 'easeInExpo', function() {
       $('#movie-tiles-for-' + currentPage).remove();
       $("#movie-tiles-reel").css('left', 0);
     });
@@ -59,6 +65,10 @@ function refreshPageWith(url){
 
 function getSearchResultsPageNumber(movieTiles){
   return parseInt(movieTiles.attr('id').replace(/[^\d]/g, ''))
+}
+
+function getCurrentPageNumber(){
+  return getSearchResultsPageNumber($('.movie_tiles'));
 }
 
 function bindEventHandlers() {

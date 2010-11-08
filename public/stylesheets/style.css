@@ -458,10 +458,18 @@ a:hover.action-link {
 }
 
 #movie-tiles-container {
-  height: 575px;
+  height: 565px;
   width: 600px;
   overflow: hidden;
   position: relative;
+}
+
+.loading-search-results {
+  position: absolute;
+  left: 245px;
+  top: 250px;
+  opacity: 0.7;
+  font-size: 30px;
 }
 
 #movie-tiles-reel {

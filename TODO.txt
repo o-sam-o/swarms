@@ -1,5 +1,6 @@
  * README
   - installation instructions
+  - screenshots
 
  * Put up on github
 
@@ -8,6 +9,7 @@
  * Cucumbers
 
  * Dub cron task for stats
+ * Make swarms standalone passenger a service on dub
 
  * Improve pagination animation
 
