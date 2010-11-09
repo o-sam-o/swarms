@@ -13,14 +13,14 @@ $(document).ready(function(){
   $("#movie-tiles-container").touchwipe({
     wipeLeft: function() { 
       var currentPage = getCurrentPageNumber();
-      if(currentPage > 1){
-        refreshPageWith('/?page=' + (currentPage - 1));
+      if(currentPage < getPagesCount()){
+        refreshPageWith('/?page=' + (currentPage + 1));
       }
     },
     wipeRight: function() { 
       var currentPage = getCurrentPageNumber();
-      if(currentPage < getPagesCount()){
-        refreshPageWith('/?page=' + (currentPage + 1));
+      if(currentPage > 1){
+        refreshPageWith('/?page=' + (currentPage - 1));
       }
     },
     min_move_x: 20,
