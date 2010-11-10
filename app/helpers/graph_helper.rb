@@ -2,7 +2,7 @@ module GraphHelper
 
   def start_point_date(movie)
     date = movie.movie_stats.order(:day).first.day
-    "Date.UTC(#{date.year}, #{date.month}, #{date.day})"
+    "Date.UTC(#{date.year}, #{date.month - 1}, #{date.day})"
   end  
 
   def movie_stats_range(movie)
