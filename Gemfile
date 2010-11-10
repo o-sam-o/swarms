@@ -2,11 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 3.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
-
 gem 'yayimdbs', :require => 'yay_imdbs'
 gem 'toname', :require => 'to_name'
 
@@ -32,6 +27,7 @@ gem 'will_paginate', '~> 3.0.pre2'
 group :development do
 	gem "rspec-rails", "~> 2.0.0"
   gem "mongrel", "~> 1.2.0.pre2"	
+  gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 group :test do
