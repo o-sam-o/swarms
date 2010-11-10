@@ -46,21 +46,21 @@ _This guide has been developed against Ubuntu 10.04_
 __Step 1: Server prerequisite__
 install mysql:
 
-  sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+    sudo apt-get install mysql-server mysql-client libmysqlclient-dev
 
 install other stuff:
 
-  sudo apt-get install curl vim git-core libxml2-dev libxslt-dev
+    sudo apt-get install curl vim git-core libxml2-dev libxslt-dev
 
 install rvm: http://rvm.beginrescueend.com/rvm/install/
 
 rvm setup:
 
-  rvm package install zlib
-  rvm install 1.9.2
-  rvm 1.9.2
-  rvm gemset create sw
-  rvm 1.9.2@sw
+    rvm package install zlib
+    rvm install 1.9.2
+    rvm 1.9.2
+    rvm gemset create sw
+    rvm 1.9.2@sw
 
 __Step 2: Download app__
 
@@ -100,17 +100,17 @@ __Step 6: Set directory permissions__
 
 The app will download images and add them to the public folder
 
-  sudo chmod -R 777 public/
+    sudo chmod -R 777 public/
 
 __Step 7: Scrap torrent info__
 
 Scrap for new torrent info
 
-  rake source_torrents RAILS_ENV=production
+    rake source_torrents RAILS_ENV=production
 
 Compile statics based on recent torrent scrapings
 
-  rake add_movie_stats RAILS_ENV=production
+    rake add_movie_stats RAILS_ENV=production
 
 Both of these rake tasks are intended to be regularly kicked off by cron
 
