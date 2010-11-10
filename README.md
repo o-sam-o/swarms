@@ -27,9 +27,17 @@ Features
 Screenshots
 -----------
 
-TODO add screenshot of home page
+![Home Page](http://farm5.static.flickr.com/4022/5163897480_799a73de3b_z.jpg) 
 
-TODO add screen show of movie show page
+Home Page
+
+![View Video](http://farm5.static.flickr.com/4038/5163897550_5e4670b718_z.jpg)
+
+View Movie Details
+
+![Watch Trailer](http://farm5.static.flickr.com/4027/5163290689_605128edd1_z.jpg)
+
+Watch a Movie Trailer
 
 Installation
 ------------
@@ -41,6 +49,7 @@ install mysql:
   sudo apt-get install mysql-server mysql-client libmysqlclient-dev
 
 install other stuff:
+
   sudo apt-get install curl vim git-core libxml2-dev libxslt-dev
 
 install rvm: http://rvm.beginrescueend.com/rvm/install/

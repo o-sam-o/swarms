@@ -1,9 +1,3 @@
- * README
-  - installation instructions
-  - screenshots
-
- * Put up on github
-
  * Page for verifying torrent to movie match and find movies without a match
 
  * Add more sources for torrents
@@ -12,6 +6,7 @@
  * Local deployment:
   ** Make swarms standalone passenger a service on dub
   ** Fix data duplicates
+
 ---------------------- Post 0.1
 
  * Google analytics
