@@ -337,7 +337,7 @@
 
 .rounded-table th {
   color: white;
-  background: url(http://localhost:3000/images/theme/wrap-glow.jpg) no-repeat 50% 0%;
+  background: url(../images/theme/wrap-glow.jpg) no-repeat 50% 0%;
 }
 
 .rounded-table-no-header tr:first-child td:first-child {
