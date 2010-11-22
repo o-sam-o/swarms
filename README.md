@@ -2,8 +2,7 @@
 
 Overview
 --------
-Swarms is a movie/torrent discovery website.  The site uses the innately social nature of BitTorrent to sort movies by popularity which makes it easy to discover new films or rips.  
-The site tracks and records swarm sizes in order to provide historic insight about the popularity of movies.
+Swarms is a movie/torrent discovery website.  The site uses the innately social nature of BitTorrent to sort movies by popularity which makes it easy to discover new films or rips.  The site tracks and records swarm sizes in order to provide historic insight about the popularity of movies.
 
 Project Status
 --------------
@@ -44,6 +43,7 @@ Installation
 _This guide has been developed against Ubuntu 10.04_
 
 __Step 1: Server prerequisite__
+
 install mysql:
 
     sudo apt-get install mysql-server mysql-client libmysqlclient-dev
