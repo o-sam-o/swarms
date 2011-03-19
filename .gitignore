@@ -8,3 +8,5 @@ public/images/posters/*
 *.swp
 coverage/*
 capybara-*.html
+.rvmrc
+.README.md.swo
