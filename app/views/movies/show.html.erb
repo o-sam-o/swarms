@@ -147,7 +147,7 @@
       <%= render :partial => "optional_row", :locals => {:data_label => 'Release Date', 
             :data => @movie.release_date? ? @movie.release_date.strftime('%d %B %Y') : ''} %>
       <%= render :partial => "optional_row", :locals => {:data_label => 'Classification', :data => @movie.classification} %>
-      <%= render :partial => "optional_row", :locals => {:data_label => 'Language', :data => @movie.language} %>
+      <%= render :partial => "optional_row", :locals => {:data_label => 'Languages', :data => @movie.language} %>
       <% if @movie.genres.present? %>
         <tr>	
           <td>Genres</td>

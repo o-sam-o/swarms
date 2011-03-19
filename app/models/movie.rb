@@ -118,7 +118,7 @@ private
   def self.convert_imdb_info_to_params(imdb_info, imdb_id)
     {
      :name => imdb_info[:title], :year => imdb_info[:year], :plot => imdb_info[:plot],
-     :director => imdb_info[:director], :language => imdb_info[:language], 
+     :director => imdb_info[:director], :language => imdb_info[:languages].try(:join, ', '), 
      :classification => imdb_info[:mpaa], :release_date => imdb_info[:release_date],
      :genres => imdb_info[:genre].blank? ? [] : imdb_info[:genre].collect{|name| Genre.find_or_create_by_name(name)},
      :runtime => imdb_info[:runtime], :imdb_id => imdb_id
