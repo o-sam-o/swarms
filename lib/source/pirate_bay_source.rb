@@ -10,7 +10,7 @@ module Source
     PAGES_TO_SOURCE = 5
   
     def refresh
-      torrent_count = 0
+      processed_torrents = []
       error_count = 0
     
       (1..PAGES_TO_SOURCE).each do |page|
@@ -20,8 +20,10 @@ module Source
           Rails.logger.info "Url: #{torrent_url} Seeds: #{seeds} Leaches: #{leaches}"      
           torrent = torrent_url.split('/').last
           begin
-            record_stats(torrent, seeds, leaches)
-            torrent_count += 1
+            unless processed_torrents.include?(torrent.downcase)
+              record_stats(torrent, seeds, leaches)
+              processed_torrents << torrent.downcase
+            end
           rescue 
             Rails.logger.error "Error scraping torrent #{torrent} : #{$!}", $!.backtrace
             error_count += 1
@@ -29,7 +31,7 @@ module Source
         end
       end
     
-      "Found #{torrent_count} torrents with #{pluralize(error_count, 'error')}"
+      "Found #{processed_torrents.length} torrents with #{pluralize(error_count, 'error')}"
     end
   
   end

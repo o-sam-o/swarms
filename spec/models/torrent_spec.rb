@@ -18,7 +18,7 @@ describe Torrent do
     torrent = Torrent.new(:name => 'test.torrent')
     torrent.stub!(:associate_with_movie)
     torrent.save!
-    torrent.torrent_stats.create!(:seeds => 10, :leaches => 2)
+    torrent.torrent_stats.create!(:seeds => 10, :leaches => 2, :latest => false)
     latest = torrent.torrent_stats.build(:seeds => 11, :leaches => 30)
     latest.created_at = Date.civil(2020, 1, 1)
     latest.save!

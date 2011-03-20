@@ -29,7 +29,7 @@ task :refresh_all_torrents, :force_images, :needs => :environment do |t, args|
         print "\b\b\b\b\b\b#{"%.2f" % ((movies_processed.to_f / movie_count.to_f) * 100)}%"
         sleep 1
       rescue Exception => e
-        p "Failed to scrap movie #{movie.name} [#{movie.id}] : #{e.message}"
+        p "\nFailed to scrap movie #{movie.name} [#{movie.id}] : #{e.message}"
         errors += 1
       end
     end

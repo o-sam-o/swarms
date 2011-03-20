@@ -35,7 +35,7 @@ describe Movie do
       @movie = Movie.create!(:name => 'Movie', :year => 2000)
     
       torrent1 = Torrent.create!(:name => 'test.torrent', :movie => @movie)
-      older1 = torrent1.torrent_stats.create!(:seeds => 10, :leaches => 2)
+      older1 = torrent1.torrent_stats.create!(:seeds => 10, :leaches => 2, :latest => false)
       older1.update_attribute(:created_at, 1.day.ago)
 
       latest1 = torrent1.torrent_stats.create!(:seeds => 11, :leaches => 30)
