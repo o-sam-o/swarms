@@ -42,8 +42,9 @@ module GraphHelper
 
   def torrent_info_json(movie)
       m = {}
-      movie.torrents.each_with_index { |t, index| m[index] = {'name' => t.name, 
-        'created_at' => t.created_at.strftime('%d %b %Y')} }
+      movie.torrents.each_with_index do |t, index| 
+        m[t.name] = { 'created_at' => t.created_at.strftime('%d %b %Y') }
+      end
       m.to_json  
   end  
 

@@ -3,7 +3,7 @@
 <!-- 2. Add the JavaScript to initialize the chart on document ready --> 
 <script type="text/javascript"> 
 	$(document).ready(function() {
-    var torrentInfo = <%=raw torrent_info_json(movie) %>  
+    var torrentInfo = <%= raw torrent_info_json(movie) %>  
     var chart = new Highcharts.Chart({
 			chart: {
 				renderTo: 'current-torrents-graph',
@@ -15,8 +15,14 @@
 				text: 'Latest Torrents'
 			},
       xAxis: {
-      allowDecimals: false,
-      categories: <%= (1..movie.torrents.count).to_a.to_json %>
+        startOnTick: false,
+        lineWidth: 0,
+        tickWidth: 0,
+        tickLength: 0,
+        labels:{
+          enabled: false
+        },
+        categories: <%= movie.latest_torrent_stats.collect { |ts| ts.torrent.name }.to_json.html_safe %>
 			},
 			yAxis: {
 				min: 0,
@@ -26,8 +32,8 @@
 			},
 			tooltip: {
 				formatter: function() {
-					return '<b>'+ torrentInfo[this.x - 1]['name'] +'</b><br/>'+
-            'First Seen: ' + torrentInfo[this.x - 1]['created_at'] + '<br/>' + 
+          return '<b>'+ this.x +'</b><br/>'+
+            'First Seen: ' + torrentInfo[this.x]['created_at'] + '<br/>' + 
             this.series.name +': '+ Highcharts.numberFormat(this.y * <%= scale_rate movie %>, 0, ',') +'<br/>'+
 						'Total: '+ Highcharts.numberFormat(this.point.stackTotal * <%= scale_rate movie %>, 0 , ',');
 				}
@@ -36,8 +42,8 @@
          layout: 'vertical',
          align: 'left',
          verticalAlign: 'top',
-         x: 90,
-         y: 70,
+         x: 450,
+         y: 5,
          borderWidth: 1,
          backgroundColor: '#505050'
       },
