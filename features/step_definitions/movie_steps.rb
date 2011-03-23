@@ -10,3 +10,9 @@ Given /^there are (\d+) movies$/ do |count|
   end
 end
 
+Then /^I should have the follow movies$/ do |expected_table|
+  actual_table = [['movie_name', 'movie_year', 'swarm_score', 'current_rank']]
+  Movie.all.each { |m| actual_table << [m.name, m.year.to_s, m.swarm_score.to_s, m.current_rank.to_s] }
+  expected_table.diff!(actual_table)
+end
+

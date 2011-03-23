@@ -13,6 +13,9 @@ require 'cucumber/rails/world'
 require 'cucumber/rails/active_record'
 require 'cucumber/web/tableish'
 
+# Allow stubbing in specs
+require 'cucumber/rspec/doubles'
+
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
