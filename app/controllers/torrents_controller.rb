@@ -15,4 +15,11 @@ class TorrentsController < ApplicationController
       end
       redirect_to(:action => :index)
   end
+
+  def find_movie
+    render :json => 
+      YayImdbs.search_imdb(params[:new_movie_title]).collect { |movie_info|
+        movie_info.merge(:movie_id => (Movie.find_by_imdb_id(movie_info[:imdb_id]).id rescue nil))
+      }
+  end
 end

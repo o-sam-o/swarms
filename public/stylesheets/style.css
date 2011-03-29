@@ -533,12 +533,12 @@ a:hover.action-link {
   cursor:  pointer;
 }
 
-.torrent-name-contaner {
+.torrent-name-container {
   word-wrap: break-word; 
   width: 400px;
 }
 
-.movie-show-torrent-name-contaner {
+.movie-show-torrent-name-container {
   word-wrap: break-word; 
   width: 460px;
 }

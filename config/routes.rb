@@ -4,11 +4,16 @@ Swarm::Application.routes.draw do |map|
   match 'about', :to => "home#about", :as => 'about'
   match 'genre/:genre', :to => "home#index", :as => 'genre_search'
   
-  resources :movies
+  resources :movies do
+    member do
+      get :id
+    end
+  end
 
   resources :torrents do
     collection do
       put :verify
+      get :find_movie
     end
   end
 

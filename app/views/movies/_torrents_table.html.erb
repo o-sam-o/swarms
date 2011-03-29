@@ -8,7 +8,7 @@
   <tbody>
     <% torrents.each do |torrent| %>
       <tr>
-        <td><div class="movie-show-torrent-name-contaner"><%= torrent.name %></div></td>
+        <td><div class="movie-show-torrent-name-container"><%= torrent.name %></div></td>
         <td><%= torrent.created_at.strftime('%d %b %Y') %>
       </tr>
     <% end %>
