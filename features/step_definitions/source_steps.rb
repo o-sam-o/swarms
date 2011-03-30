@@ -30,3 +30,6 @@ Given /^I stub IMDB to have the following movies$/ do |table|
   end
 end
 
+Given /^I stub the IMDB search to return:$/ do |table|
+   YayImdbs.stub(:search_imdb).and_return(table.hashes)
+end

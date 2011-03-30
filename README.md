@@ -16,7 +16,7 @@ Features
 --------
  * Scraps The [Pirate Bay](http://thepiratebay.org/) to discover new movies and detect swarm sizes
  * Automatic conversion of torrent name to movie titles (Uses [toname](http://github.com/o-sam-o/toname)) 
- * Admin screens for manually correcting torrent to movie name mappings (pending)
+ * Admin screens for manually correcting torrent to movie name mappings
  * Scraps movie metadata from IMDB (Uses [Yayimdbs](http://github.com/o-sam-o/yayimdbs))
  * Embedded movie trailer (Youtube)
  * Records and graphs movie swarm sizes

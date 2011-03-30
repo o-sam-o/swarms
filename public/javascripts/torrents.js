@@ -27,6 +27,8 @@ $(document).ready(function(){
     }
   });
 
+  $('#change-movie-search-button').click(function(){searchForMovies($('#new_movie_title').val());});
+
   //Make change button show dialog
   $('.change-movie').click(function(){
     $('#new_movie_title').val($(this).attr('data-movie-name'));
@@ -55,7 +57,7 @@ function searchForMovies(movieName){
           resultRow.append('<td></td>');
         }
 
-        var useLink = $('<a href="#">Use</a>');
+        var useLink = $('<a href="#" id="use_movie_' + movieResult.name.replace(/\s/g, "") + '">Use</a>');
         if (movieResult.movie_id) {
           useLink.attr('data-movie-id', movieResult.movie_id);
         }

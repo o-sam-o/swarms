@@ -20,7 +20,7 @@
           </thead>
           <tbody>
             <% @torrents.each_with_index do |torrent, index| %>
-              <tr>
+              <tr id="match_row_for_<%= torrent.id %>">
                 <td>
                   <%= label_tag "verify_torrent_#{torrent.id}", "Verify #{torrent.name}", :class => 'hidden' %> 
                   <%= check_box_tag "verify[#{index}][verified]", "1", false, 
@@ -56,7 +56,8 @@
 	<form id="change-movie-form">
     <label for="new_movie_title">Movie Name:</label>
     <input type="text" name="new_movie_title" id="new_movie_title" class="text ui-widget-content ui-corner-all" />
-      <div id="change-movie-loading-indicator" class="loading-indicator loading-indicator-active" style="display:none"></div>
+    <input id="change-movie-search-button" type="button" value="Search" class="action-button" />
+    <div id="change-movie-loading-indicator" class="loading-indicator loading-indicator-active" style="display:none"></div>
   </form>
   <hr/>
   <table id="change-movie-table" class="rounded-table" style="display:none">
