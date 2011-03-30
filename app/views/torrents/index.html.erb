@@ -19,15 +19,15 @@
             </tr>
           </thead>
           <tbody>
-            <% @torrents.each do |torrent| %>
+            <% @torrents.each_with_index do |torrent, index| %>
               <tr>
                 <td>
                   <%= label_tag "verify_torrent_#{torrent.id}", "Verify #{torrent.name}", :class => 'hidden' %> 
-                  <%= check_box_tag "verify[][verified]", "1", false, 
+                  <%= check_box_tag "verify[#{index}][verified]", "1", false, 
                       {:id => "verify_torrent_#{torrent.id}"}.merge(torrent.movie? ? {} : {:disabled => true}) %>
-                  <%= hidden_field_tag "verify[][torrent_id]", torrent.id, :id => "torrent_id_for_#{torrent.id}" %>
-                  <%= hidden_field_tag "verify[][imdb_id]", '', :id => "imdb_id_for_#{torrent.id}" %>
-                  <%= hidden_field_tag "verify[][movie_id]", torrent.movie? ? torrent.movie.id : 0, 
+                  <%= hidden_field_tag "verify[#{index}][torrent_id]", torrent.id, :id => "torrent_id_for_#{torrent.id}" %>
+                  <%= hidden_field_tag "verify[#{index}][imdb_id]", '', :id => "imdb_id_for_#{torrent.id}" %>
+                  <%= hidden_field_tag "verify[#{index}][movie_id]", torrent.movie? ? torrent.movie.id : 0, 
                         :id => "movie_id_for_#{torrent.id}" %>
                 </td>
                 <td><div class="torrent-name-container"><%= torrent.name %></div></td>

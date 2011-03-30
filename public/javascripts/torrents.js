@@ -81,14 +81,18 @@ function updateTorrentMovie(e){
   var imdbId = $(this).attr('data-imdb-id');
   var movieName = $(this).attr('data-movie-name');
 
-  $('#movie_id_for_' + torrentId).val(movieId);
   $('#imdb_id_for_' + torrentId).val(imdbId);
 
   if (movieId){
+    $('#movie_id_for_' + torrentId).val(movieId);
     $('#link_to_movie_for_' + torrentId).html('<a href="/movies/' + movieId + '/id" target="_blank">' + movieName + '</a>'); 
   }else{
+    $('#movie_id_for_' + torrentId).val(0);
     $('#link_to_movie_for_' + torrentId).html('<a href="http://www.imdb.com/title/tt' + imdbId + '" target="_blank">' + movieName + '</a>'); 
   }
+
+  $('#verify_torrent_' + torrentId).attr('checked', true);
+  $('#verify_torrent_' + torrentId).attr('disabled', false);
 
   $('#change-movie-dialog').dialog('close'); 
 }

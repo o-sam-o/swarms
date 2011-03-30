@@ -8,8 +8,9 @@ class TorrentsController < ApplicationController
   end
 
   def verify
-      params[:verify].each do |verify_param|
+      params[:verify].each do |index, verify_param|
         next unless verify_param[:verified] == '1'
+        verify_param[:movie_id] = Movie.find_or_create_by_imdb_id(verify_param[:imdb_id]).id if verify_param[:movie_id].to_i < 1
         Torrent.find(verify_param[:torrent_id]).update_attributes!(:movie_id => verify_param[:movie_id], 
                                                                    :verified => true)
       end
