@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'torrents' %>
+<% end %>
+
 <% content_for :main_title do %>
   Verify Torrents
 <% end %>
@@ -22,13 +26,14 @@
                   <%= check_box_tag "verify[][verified]", "1", false, 
                       {:id => "verify_torrent_#{torrent.id}"}.merge(torrent.movie? ? {} : {:disabled => true}) %>
                   <%= hidden_field_tag "verify[][torrent_id]", torrent.id, :id => "torrent_id_for_#{torrent.id}" %>
+                  <%= hidden_field_tag "verify[][imdb_id]", '', :id => "imdb_id_for_#{torrent.id}" %>
                   <%= hidden_field_tag "verify[][movie_id]", torrent.movie? ? torrent.movie.id : 0, 
                         :id => "movie_id_for_#{torrent.id}" %>
                 </td>
                 <td><div class="torrent-name-container"><%= torrent.name %></div></td>
-                <td><%= link_to(torrent.movie.display_name, movie_path(torrent.movie)) if torrent.movie %></td>
+                <td id="link_to_movie_for_<%= torrent.id %>"><%= link_to(torrent.movie.display_name, movie_path(torrent.movie), {:target => '_blank'}) if torrent.movie %></td>
                 <td>
-                  <input type="button" value="Change" class="action-button change-movie" data-movie-name="<%= ToName.to_name(torrent.name).name %>"/>
+                  <input type="button" value="Change" class="action-button change-movie" data-movie-name="<%= ToName.to_name(torrent.name).name %>" data-torrent-id="<%= torrent.id %>"/>
                 </td>
               </tr>
             <% end %>
@@ -47,27 +52,14 @@
   No un-verifed torrents.
 <% end %>
 
-<script>
-  $(document).ready(function(){
-    $('#verify-torrents-table td:nth-child(2), td:nth-child(3)').click(function(){
-      var $checkbox = $(this).parent().find('input[type=checkbox]');
-      $checkbox.attr('checked', !$checkbox.attr('disabled') && !$checkbox.attr('checked'));
-    });
-
-    $('#select-all-checkboxes').click(function(){
-      $('input[type=checkbox]:not(:disabled)').attr('checked', true);
-    });
-  });
-</script>
-
-
 <div id="change-movie-dialog" title="Change Torrent's Movie">
 	<form id="change-movie-form">
     <label for="new_movie_title">Movie Name:</label>
     <input type="text" name="new_movie_title" id="new_movie_title" class="text ui-widget-content ui-corner-all" />
+      <div id="change-movie-loading-indicator" class="loading-indicator loading-indicator-active" style="display:none"></div>
   </form>
-
-  <table id="change-movie-table" style="display:none">
+  <hr/>
+  <table id="change-movie-table" class="rounded-table" style="display:none">
     <thead>
       <tr>
         <th>Movie</th>
@@ -80,53 +72,3 @@
     </tbody>
   </table>
 </div>
-
-<script>
-    $("#change-movie-dialog").dialog({
-    autoOpen: false,
-    height: 350,
-    width: 650,
-    modal: true,
-    buttons: {
-      Search: function() {
-        //TODO handle blank
-        searchForMovies($('#new_movie_title').val());
-      },
-      Cancel: function() {
-        $(this).dialog('close');
-      }
-    }
-  });
-
-  function searchForMovies(movieName){
-    //TODO add loading indicator
-    $.ajax({
-      url: "torrents/find_movie",
-      data: "new_movie_title=" + movieName,
-      success: function(data){
-        var resultTable = $('<tbody></tbody>');
-        $.each(data, function(index, movieResult) { 
-            var resultRow = $('<tr></tr>');
-            resultRow.append('<td><a href="http://www.imdb.com/title/tt' + movieResult.imdb_id + '">' + movieResult.name + '</a></td>');
-            resultRow.append('<td>' + movieResult.year + '</td>');
-            if (movieResult.movie_id) {
-              resultRow.append('<td><a href="/movies/' + movieResult.movie_id + '/id">View</a></td>');
-            }else{
-              resultRow.append('<td></td>');
-            }
-            // TODO action column
-            resultRow.append('<td></td>');
-
-            resultTable.append(resultRow);
-        });
-        $('#change-movie-table tbody').replaceWith(resultTable);
-        $('#change-movie-table').show();
-      }
-    });
-  }
-
-  $('.change-movie').click(function(){
-    $('#new_movie_title').val($(this).attr('data-movie-name'));
-    $('#change-movie-dialog').dialog('open'); 
-  });
-</script>

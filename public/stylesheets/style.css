@@ -12,8 +12,17 @@
   right: 315px;
 }
 
+.loading-indicator {
+  height: 21px;
+  width: 56px;
+}
+
 .loading-indicator-active {
   background-image: url(../images/loading.gif);
+}
+
+#change-movie-loading-indicator {
+  float: right;
 }
 
 #simpleTooltip { 
@@ -562,6 +571,16 @@ a:hover.action-link {
   top 5px;
 }
 
+#change-movie-table {
+  margin: 10px 0;
+  width: 100%;
+}
+
+#new_movie_title {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 300px;
+}
 
 .comma-list li::before{
   content:", ";
