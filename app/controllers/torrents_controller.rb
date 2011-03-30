@@ -1,5 +1,6 @@
 class TorrentsController < ApplicationController
-  
+  layout 'no_sidebar'
+
   def index
     @torrents = Torrent.includes(:movie).where(:verified => false)
     @torrents = @torrents.paginate(:page => params[:page], :per_page => 30)

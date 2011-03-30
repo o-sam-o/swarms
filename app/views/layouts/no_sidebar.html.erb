@@ -1,9 +1,6 @@
 <% content_for :main do %>
-			<div id="content">
+			<div id="content" class="no-sidebar">
 				<%= yield %>
 			</div><!--end content--> 
-			<div id="sidebar"> 
-				<%= yield :sidebar %>
-			</div><!--end sidebar-->	
 <% end %>
 <%= render :file => 'layouts/base' %>

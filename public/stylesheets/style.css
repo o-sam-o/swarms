@@ -4,6 +4,10 @@
   font-size: 40px!important;
 }
 
+#content.no-sidebar {
+  width: 920px;
+}
+
 #loading-indicator {
   height: 21px;
   width: 56px;
@@ -528,6 +532,7 @@ a:hover.action-link {
  margin: 10px 0 10px 0;
  font-size: 12px;  
  background: white;
+ width: 100%;
 }
 
 #verify-torrents-table th {
