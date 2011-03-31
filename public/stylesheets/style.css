@@ -587,6 +587,16 @@ a:hover.action-link {
   width: 300px;
 }
 
+#search_torrents {
+  float: left;
+  margin-right: 5px;
+  width: 145px;
+}
+
+#search-torrents-button {
+  float: right;
+}
+
 .comma-list li::before{
   content:", ";
   white-space:pre;

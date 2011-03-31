@@ -48,3 +48,22 @@ Feature: Match Torrents to Movies
      | name             | movie   | verified |
      | top.gunz.torrent | Top Gun | false    |
      | top.guys.torrent | Top Gun | true     |
+
+  Scenario: Torrent search
+    Given the following movies exist:
+      | name    | year |
+      | Top Gun | 1986 |
+    And the following torrents exist:
+      | name             | movie   | verified |
+      | top.gunz.torrent | Top Gun | false    |
+      | top.gun2.torrent | Top Gun | true     |
+      | top.guys.torrent | Top Gun | false    |
+    When I am on the verify torrent page
+    Then I should see "top.gunz.torrent"
+    And I should see "top.guys.torrent"
+    And I should not see "top.gun2.torrent"
+    When I fill in "Search Torrents" with "gun"
+    And I press "Search"
+    Then I should see "top.gunz.torrent"
+    And I should see "top.gun2.torrent"
+    But I should not see "top.guys.torrent"

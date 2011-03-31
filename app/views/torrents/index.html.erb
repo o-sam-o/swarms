@@ -6,6 +6,14 @@
   Verify Torrents
 <% end %>
 
+<% content_for :sidebar_title do %>
+  <%= form_tag(torrents_path, :method => "get") do %>
+    <%= label_tag "search_torrents", "Search Torrents", :class => 'hidden' %> 
+    <input type="search" name="search_torrents" id="search_torrents" value="<%= params[:search_torrents] %>" style="float: left;"/>
+    <%= submit_tag "Search", :class => "action-button", :id => 'search-torrents-button' %>
+  <% end %>
+<% end %>
+
 <% unless @torrents.blank? %>
   <%= form_tag(verify_torrents_path, :method => "put") do %>
     <div class="post" style="margin-bottom: 10px;">

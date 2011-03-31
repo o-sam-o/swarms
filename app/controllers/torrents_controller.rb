@@ -2,7 +2,12 @@ class TorrentsController < ApplicationController
   layout 'no_sidebar'
 
   def index
-    @torrents = Torrent.includes(:movie).where(:verified => false)
+    @torrents = Torrent.includes(:movie)
+    unless params[:search_torrents].blank?
+      @torrents = @torrents.where('name like ?', "%#{params[:search_torrents]}%")
+    else
+      @torrents = @torrents.where(:verified => false)
+    end
     @torrents = @torrents.paginate(:page => params[:page], :per_page => 30)
 
     render 'index'
