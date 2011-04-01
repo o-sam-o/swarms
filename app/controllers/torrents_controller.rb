@@ -2,7 +2,7 @@ class TorrentsController < ApplicationController
   layout 'no_sidebar'
 
   def index
-    @torrents = Torrent.includes(:movie)
+    @torrents = Torrent.includes(:movie).order('created_at DESC')
     unless params[:search_torrents].blank?
       @torrents = @torrents.where('name like ?', "%#{params[:search_torrents]}%")
     else
