@@ -3,8 +3,8 @@ module Source
     include Source::TorrentSourcer
     include ActionView::Helpers::TextHelper
 
-    YQL_QUERY = %{select * from html where url="http://thepiratebay.org/browse/201/%s/9" and xpath='//table[@id="searchResult"]/tr'}
-    TORRENT_URL_XPATH = '//a[starts-with(@href, "http://torrents.thepiratebay.org")]/@href'
+    YQL_QUERY = %{select * from html where url="http://thepiratebay.se/browse/201/%s/9" and xpath='//table[@id="searchResult"]/tr'}
+    TORRENT_URL_XPATH = '//a[starts-with(@href, "http://torrents.thepiratebay.se")]/@href'
     SEEDS_XPATH = '//td[3]/p'
     LEACHES_XPATH = '//td[4]/p'
     PAGES_TO_SOURCE = 5
