@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0.0'
+gem 'rails', '~> 3.2.17'
 
 gem 'yayimdbs'
 gem 'toname', :require => 'to_name'
